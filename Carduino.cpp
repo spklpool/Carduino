@@ -8,54 +8,53 @@ Carduino::Carduino() {
   //Wire.begin();
 }
 
-void Carduino::simulateClock() {
-  const uint32_t middle = dot25 & dot26 & dot27 & dot28 & dot29 & dot30;
-  uint32_t clockarray[] = { dot1, dot2, dot3, dot4,
-                                  dot5, dot6, dot7, dot8,
-                                  dot9, dot10, dot11, dot12,
-                                  dot13, dot14, dot15, dot16,
-                                  dot17, dot18, dot19, dot20,
-                                  dot21, dot22, dot23, dot24};
-
-  clockarray[0] = clockarray[0] & middle;
-  for (int i=0; i<24; i++) {
-    if (i>0) {
-      clockarray[i] = clockarray[i] & clockarray[i-1] & middle;
-    } 
-  }
-
-  for(int i=0; i<24; i++) {
-    displayDots(clockarray[i]);
-    delay(100);
-  }
-}
-
 void Carduino::runClock() {
-  runClock(1);
+  runClock(1, false);
 }
 
 void Carduino::runClock(uint32_t speedMultiplier) {
-  const uint32_t middle = dot25 & dot26 & dot27 & dot28 & dot29 & dot30;
-  uint32_t clockarray[] = { dot1, dot2, dot3, dot4,
-                                  dot5, dot6, dot7, dot8,
-                                  dot9, dot10, dot11, dot12,
-                                  dot13, dot14, dot15, dot16,
-                                  dot17, dot18, dot19, dot20,
-                                  dot21, dot22, dot23, dot24};
+  runClock(speedMultiplier, false);
+}
 
-  clockarray[0] = clockarray[0] & middle;
+void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
+  uint32_t middle = dot25 & dot26 & dot28 & dot30 & dot29 & dot27;
+  uint32_t epocharray[] = { dot25, dot26, dot28, dot30, dot29, dot27 };
+  for (int i=0; i<6; i++) {
+    if (i>0) {
+      epocharray[i] = epocharray[i] & epocharray[i-1];
+    }
+  }
+
+  uint32_t clockarray[] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
+                            dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
+                            dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24};
+
   for (int i=0; i<24; i++) {
     if (i>0) {
-      clockarray[i] = clockarray[i] & clockarray[i-1] & middle;
+      clockarray[i] = clockarray[i] & clockarray[i-1];
     } 
   }
 
-  uint32_t seconds_elapsed = (millis()/1000*speedMultiplier);
-  epochsElapsed = seconds_elapsed/secondsInEpoch;
-  uint32_t currentEpochSeconds = seconds_elapsed-(epochsElapsed*secondsInEpoch);
-  dotsElapsed = currentEpochSeconds/secondsInDot;
-  displayDots(clockarray[dotsElapsed]);
+  uint32_t secondsElapsed = (millis()/MILLIS_IN_SECOND*speedMultiplier);
+  dotsElapsed = secondsElapsed/SECONDS_IN_DOT;
+  epochsElapsed = dotsElapsed/DOTS_IN_EPOCH;
+  uint32_t currentEpochDots = dotsElapsed%DOTS_IN_EPOCH;
+  if (currentEpochDots < 0) showErrorState(); // guard clause - this should not happen
+  if (currentEpochDots > 24) showErrorState(); // guard clause - this should not happen
+  if (middleEpochCounter) {
+    displayDots(clockarray[currentEpochDots] & epocharray[epochsElapsed]);
+  } else {
+    displayDots(clockarray[currentEpochDots] & middle);
+  }
   delay(100);
+}
+
+void Carduino::showErrorState() {
+  const uint32_t middle = dot25&dot26&dot27&dot28&dot29&dot30;
+  displayDots(middle);
+  delay(100);
+  displayDots(dot0);
+  delay(200);
 }
 
 void Carduino::setTimeToNow() {
@@ -99,5 +98,18 @@ uint8_t Carduino::getValueAtIndex(uint32_t data, byte index) {
     return(LOW);
   } else {
     return(HIGH);
+  }
+}
+
+// Concentric circles spiraling inwards
+void Carduino::inwardSpiral() {
+  const uint32_t pattern2array[] = { dot2, dot4, dot6, dot8, dot10, dot12, dot14, dot16, 
+                                     dot18, dot20, dot22, dot24, dot1, dot3, dot5, dot7, 
+                                     dot9, dot11, dot13, dot15, dot17, dot19, dot21, dot23,
+                                     dot25, dot26, dot28, dot30, dot29, dot27};
+
+  for (int i=0 ; i<30; i++) {
+    displayDots(pattern2array[i]);
+    delay(100);
   }
 }

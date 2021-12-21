@@ -1,8 +1,6 @@
 #ifndef Carduino_h
 #define Carduino_h
 
-#define CARDUINO_LED_COUNT 32
-
 #include <DS3231.h>
 #include <Wire.h>
 
@@ -15,6 +13,7 @@
 // most bits in the array will end up being latched on shift register
 // 1 after all bits are serialized.
 // 44444444333333332222222211111111
+#define dot0  0b11111111111111111111111111111111
 #define dot1  0b11111111110111111111111111111111
 #define dot2  0b11111101111111111111111111111111
 #define dot3  0b11101111111111111111111111111111
@@ -50,27 +49,34 @@
 #define dataPin 4
 #define latchPin 5
 
+#define CARDUINO_LED_COUNT 32
+#define HOURS_TO_SECONDS_MULTIPLIER 3600
+#define SECONDS_IN_DOT 18000 // 60*60*5;
+#define DOTS_IN_EPOCH 24
+#define MILLIS_IN_SECOND 1000
+
 class Carduino
 {
   public:
     Carduino();
-    void simulateClock();
     void runClock();
     void runClock(uint32_t speedMultiplier);
+    void runClock(uint32_t speedMultiplier, bool middleEpochCounter);
+    void runClockWithEpochCounter(uint32_t speedMultiplier);
+    void inwardSpiral();
     void displayDots(uint32_t data);
     void setTimeToNow();
+    void showErrorState();
     
   private:
-    uint8_t getValueAtIndex(uint32_t data, byte index);
     DS3231 clock;
     RTClib rtc;
-    uint32_t secondsInEpoch = 60*60*24*5;
-    uint32_t secondsInDot = 60*60*5;
     uint32_t dotsElapsed = 0;
     uint32_t epochsElapsed = 0;
     uint32_t lastDotsElapsed = 0;
     uint32_t lastEpochsElapsed = 0;
     uint32_t remainingMillis = 0;
+    uint8_t getValueAtIndex(uint32_t data, byte index);
 };
 
 
