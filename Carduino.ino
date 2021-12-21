@@ -7,9 +7,9 @@ void setup() {
 }
 
 void loop() {
-  carduino.clockpattern();
-  pattern1();
-  pattern2();
+  carduino.simulateClock();
+//  pattern1();
+//  pattern2();
 }
 
 // Simply by providing other arrays, we can easily make the dots

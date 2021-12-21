@@ -3,6 +3,9 @@
 
 #define CARDUINO_LED_COUNT 32
 
+#include <DS3231.h>
+#include <Wire.h>
+
 // These binary values are the secret sauce that makes this code simple.
 // Each bit of the 32 bit entries in the array represents one
 // of the output pins on one of the 4 shift registers.
@@ -51,12 +54,23 @@ class Carduino
 {
   public:
     Carduino();
-    void clockpattern();
+    void simulateClock();
+    void runClock();
+    void runClock(uint32_t speedMultiplier);
     void displayDots(uint32_t data);
+    void setTimeToNow();
     
   private:
     uint8_t getValueAtIndex(uint32_t data, byte index);
-
+    DS3231 clock;
+    RTClib rtc;
+    uint32_t secondsInEpoch = 60*60*24*5;
+    uint32_t secondsInDot = 60*60*5;
+    uint32_t dotsElapsed = 0;
+    uint32_t epochsElapsed = 0;
+    uint32_t lastDotsElapsed = 0;
+    uint32_t lastEpochsElapsed = 0;
+    uint32_t remainingMillis = 0;
 };
 
 

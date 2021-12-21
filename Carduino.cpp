@@ -5,9 +5,10 @@ Carduino::Carduino() {
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
   pinMode(latchPin, OUTPUT);
+  //Wire.begin();
 }
 
-void Carduino::clockpattern() {
+void Carduino::simulateClock() {
   const uint32_t middle = dot25 & dot26 & dot27 & dot28 & dot29 & dot30;
   uint32_t clockarray[] = { dot1, dot2, dot3, dot4,
                                   dot5, dot6, dot7, dot8,
@@ -16,17 +17,56 @@ void Carduino::clockpattern() {
                                   dot17, dot18, dot19, dot20,
                                   dot21, dot22, dot23, dot24};
 
+  clockarray[0] = clockarray[0] & middle;
   for (int i=0; i<24; i++) {
     if (i>0) {
       clockarray[i] = clockarray[i] & clockarray[i-1] & middle;
     } 
   }
-  for (int i=0 ; i<24; i++) {
-    displayDots(clockarray[i] & middle);
+
+  for(int i=0; i<24; i++) {
+    displayDots(clockarray[i]);
     delay(100);
   }
 }
 
+void Carduino::runClock() {
+  runClock(1);
+}
+
+void Carduino::runClock(uint32_t speedMultiplier) {
+  const uint32_t middle = dot25 & dot26 & dot27 & dot28 & dot29 & dot30;
+  uint32_t clockarray[] = { dot1, dot2, dot3, dot4,
+                                  dot5, dot6, dot7, dot8,
+                                  dot9, dot10, dot11, dot12,
+                                  dot13, dot14, dot15, dot16,
+                                  dot17, dot18, dot19, dot20,
+                                  dot21, dot22, dot23, dot24};
+
+  clockarray[0] = clockarray[0] & middle;
+  for (int i=0; i<24; i++) {
+    if (i>0) {
+      clockarray[i] = clockarray[i] & clockarray[i-1] & middle;
+    } 
+  }
+
+  uint32_t seconds_elapsed = (millis()/1000*speedMultiplier);
+  epochsElapsed = seconds_elapsed/secondsInEpoch;
+  uint32_t currentEpochSeconds = seconds_elapsed-(epochsElapsed*secondsInEpoch);
+  dotsElapsed = currentEpochSeconds/secondsInDot;
+  displayDots(clockarray[dotsElapsed]);
+  delay(100);
+}
+
+void Carduino::setTimeToNow() {
+  DateTime dt = DateTime(__DATE__, __TIME__);
+  clock.setYear(dt.year()-2000);
+  clock.setMonth(dt.month());
+  clock.setDate(dt.day());
+  clock.setHour(dt.hour());
+  clock.setMinute(dt.minute());
+  clock.setSecond(dt.second());
+}
 // Shift out the values of all the pins serially to the 
 // 74HCS596 shift registers.  These chips latch on rising
 // edge so they don't work as easily with the built in
