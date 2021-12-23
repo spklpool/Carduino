@@ -1,0 +1,4 @@
+eagle/*.b#*
+eagle/*.s#*
+eagle/*.lck
+eagle/*.zip
