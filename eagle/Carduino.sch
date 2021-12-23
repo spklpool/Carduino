@@ -7898,14 +7898,22 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <smd name="5" x="1.3" y="0" dx="0.4" dy="1.35" layer="1"/>
 <pad name="S3" x="-3.65" y="-0.8" drill="0.5" diameter="0.775" shape="long" rot="R90"/>
 <pad name="S1" x="3.65" y="-0.8" drill="0.5" diameter="0.775" shape="long" rot="R90"/>
-<wire x1="-3.6" y1="0.8" x2="-3.6" y2="-2.3" width="0.1524" layer="21"/>
-<wire x1="-3.6" y1="-2.3" x2="3.6" y2="-2.3" width="0.1524" layer="21"/>
-<wire x1="3.6" y1="-2.3" x2="3.6" y2="0.8" width="0.1524" layer="21"/>
-<wire x1="3.6" y1="0.8" x2="-3.6" y2="0.8" width="0.1524" layer="21"/>
+<wire x1="-4.16" y1="0.8" x2="-4.16" y2="-2.3" width="0.1524" layer="21"/>
+<wire x1="-4.16" y1="-2.3" x2="4.16" y2="-2.3" width="0.1524" layer="21"/>
+<wire x1="4.16" y1="-2.3" x2="4.16" y2="0.8" width="0.1524" layer="21"/>
+<wire x1="4.16" y1="0.8" x2="-4.16" y2="0.8" width="0.1524" layer="21"/>
 <wire x1="-4.2" y1="0.8" x2="4.2" y2="0.8" width="0.0762" layer="39"/>
 <wire x1="4.2" y1="0.8" x2="4.2" y2="-2.4" width="0.0762" layer="39"/>
 <wire x1="4.2" y1="-2.4" x2="-4.2" y2="-2.4" width="0.0762" layer="39"/>
 <wire x1="-4.2" y1="-2.4" x2="-4.2" y2="0.8" width="0.0762" layer="39"/>
+<wire x1="-3.4" y1="-0.465" x2="-3.4" y2="-1.115" width="0" layer="46"/>
+<wire x1="-3.4" y1="-1.115" x2="-3.9" y2="-1.115" width="0" layer="46" curve="-180"/>
+<wire x1="-3.9" y1="-0.465" x2="-3.4" y2="-0.465" width="0" layer="46" curve="-180"/>
+<wire x1="-3.9" y1="-0.465" x2="-3.9" y2="-1.115" width="0" layer="46"/>
+<wire x1="3.9" y1="-0.475" x2="3.9" y2="-1.125" width="0" layer="46"/>
+<wire x1="3.9" y1="-1.125" x2="3.4" y2="-1.125" width="0" layer="46" curve="-180"/>
+<wire x1="3.4" y1="-0.475" x2="3.9" y2="-0.475" width="0" layer="46" curve="-180"/>
+<wire x1="3.4" y1="-0.475" x2="3.4" y2="-1.125" width="0" layer="46"/>
 </package>
 </packages>
 <symbols>
@@ -9180,8 +9188,11 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 </sheet>
 </sheets>
 <errors>
-<approved hash="113,1,23.0971,20.5461,JP1,,,,,"/>
-<approved hash="113,1,37.8629,16.2839,JP2,,,,,"/>
+<approved hash="202,1,187.96,55.88,IC2,OSCI,,,,"/>
+<approved hash="202,1,187.96,83.82,IC2,!DSR,,,,"/>
+<approved hash="202,1,190.5,83.82,IC2,!DCD,,,,"/>
+<approved hash="202,1,193.04,83.82,IC2,!RI,,,,"/>
+<approved hash="202,1,182.88,55.88,IC2,!RESET,,,,"/>
 </errors>
 </schematic>
 </drawing>
