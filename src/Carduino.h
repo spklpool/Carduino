@@ -62,7 +62,6 @@ class Carduino
     void runClock();
     void runClock(uint32_t speedMultiplier);
     void runClock(uint32_t speedMultiplier, bool middleEpochCounter);
-    void runClockWithEpochCounter(uint32_t speedMultiplier);
     void inwardSpiral();
     void displayDots(uint32_t data);
     void setTimeToNow();

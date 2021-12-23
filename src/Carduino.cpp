@@ -18,8 +18,8 @@ void Carduino::runClock(uint32_t speedMultiplier) {
 
 void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   uint32_t middle = dot25 & dot26 & dot28 & dot30 & dot29 & dot27;
-  uint32_t epocharray[] = { dot25, dot26, dot28, dot30, dot29, dot27 };
-  for (int i=0; i<6; i++) {
+  uint32_t epocharray[] = { dot0, dot25, dot26, dot28, dot30, dot29, dot27 };
+  for (int i=0; i<7; i++) {
     if (i>0) {
       epocharray[i] = epocharray[i] & epocharray[i-1];
     }
@@ -42,7 +42,7 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   if (currentEpochDots < 0) showErrorState(); // guard clause - this should not happen
   if (currentEpochDots > 24) showErrorState(); // guard clause - this should not happen
   if (middleEpochCounter) {
-    displayDots(clockarray[currentEpochDots] & epocharray[epochsElapsed]);
+    displayDots(clockarray[currentEpochDots] & epocharray[epochsElapsed%7]);
   } else {
     displayDots(clockarray[currentEpochDots] & middle);
   }
