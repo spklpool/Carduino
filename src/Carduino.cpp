@@ -73,7 +73,7 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   uint32_t clockarray[sizeofClockarray] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
                                             dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
                                             dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24,
-                                            dot25, dot26, dot27, dot28, dot29, dot30};
+                                            dot25, dot26, dot27, dot28, dot29, dot30 };
   for (int i=0; i<sizeofClockarray; i++) {
     if (i>0) {
       clockarray[i] = clockarray[i] & clockarray[i-1];
@@ -83,16 +83,23 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   long currentTime = getNowFromClock();
   int buttonState = digitalRead(buttonPin);
   if (buttonState == HIGH) {
-    if (resetCycleCount > 50 ) {
+    if (resetCycleCount > RESET_CYCLE_THRESHOLD) {
+      fireworks2();
       resetClockToZero();
+    } else if (advanceCycleCount > ADVANCE_CYCLE_THRESHOLD) {
+      advanceClockByOneDot();
+      advanceCycleCount = 0;
+      resetCycleCount ++;
     } else {
       resetCycleCount ++;
+      advanceCycleCount ++;
     }
   } else {
     resetCycleCount = 0;
+    advanceCycleCount = 0;
   }
 
-  long secondsElapsed = currentTime;
+  long secondsElapsed = currentTime * speedMultiplier;
   dotsElapsed = secondsElapsed/SECONDS_IN_DOT;
   epochsElapsed = dotsElapsed/DOTS_IN_EPOCH;
   uint32_t currentEpochDots = dotsElapsed%DOTS_IN_EPOCH;
@@ -105,6 +112,44 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   delay(100);
 }
 
+void Carduino::sequence1() {
+  const int sizeofClockarray = 30;
+  uint32_t clockarray[sizeofClockarray] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
+                                            dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
+                                            dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24,
+                                            dot25, dot26, dot27, dot28, dot29, dot30 };
+  for (int i=0; i<sizeofClockarray; i++) {
+    displayDots(clockarray[i]);
+    delay(300);
+  }
+}
+
+void Carduino::fireworks1() {
+  const int sizeofClockarray = 3;
+  uint32_t clockarray[sizeofClockarray] = { dot25 & dot26 & dot27 & dot28 & dot29 & dot30,
+                                            dot1 & dot3 & dot5 & dot7 & dot9 & dot11 & dot13 & dot15 & dot17 & dot19 & dot21 & dot23,
+                                            dot2 & dot4 & dot6 & dot8 & dot10 & dot12 & dot14 & dot16 & dot18 & dot20 & dot22 & dot24
+                                            };
+  for (int i=0; i<sizeofClockarray; i++) {
+    displayDots(clockarray[i]);
+    delay(300);
+  }
+}
+
+void Carduino::fireworks2() {
+  const int sizeofClockarray = 3;
+  uint32_t clockarray[sizeofClockarray] = { dot25 & dot26 & dot27 & dot28 & dot29 & dot30,
+                                            dot1 & dot3 & dot5 & dot7 & dot9 & dot11 & dot13 & dot15 & dot17 & dot19 & dot21 & dot23,
+                                            dot2 & dot4 & dot6 & dot8 & dot10 & dot12 & dot14 & dot16 & dot18 & dot20 & dot22 & dot24
+                                            };
+  for (int i = 0; i<3; i++) {
+    for (int j=0; j<sizeofClockarray; j++) {
+      displayDots(clockarray[j]);
+      delay(100);
+    }
+  }
+}
+
 // Shift out the values of all the pins serially to the 
 // 74HCS596 shift registers.  These chips latch on rising
 // edge so they don't work as easily with the built in
@@ -114,8 +159,7 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
 // I need to do that every time, I'd rather have my own 
 // function that defaults to the way my chip works.
 void Carduino::displayDots(uint32_t data) {
-  // prepare the latch pin to latch on rising edge once all bits 
-  // are shifted in.
+  // prepare the latch pin to latch on rising edge
   digitalWrite(latchPin, LOW);
   for (byte counter=0; counter<CARDUINO_LED_COUNT; counter++) {
     digitalWrite(clockPin, LOW);
@@ -140,6 +184,17 @@ uint8_t Carduino::getValueAtIndex(uint32_t data, byte index) {
   }
 }
 
+bool Carduino::isButtonPressed() {
+  int buttonState = digitalRead(buttonPin);
+  if (buttonState == HIGH) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+// read current date and time from DS3231 clock
+// reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
 long Carduino::getNowFromClock() {
   Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0);
@@ -167,19 +222,70 @@ long Carduino::getNowFromClock() {
   return secondsElapsed;
 }
 
+// reset DS3231 clock to 00:00:00 Jan 1st, 2000
+// reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
 void Carduino::resetClockToZero() {
+  setClockToYMDHMS(0, 1, 1, 0, 0, 0);
+}
+
+void Carduino::advanceClockByOneDot() {
+  setClockToSeconds(getNowFromClock() + SECONDS_IN_DOT);
+}
+
+// adapted from DateTime constructor from 
+// https://github.com/NorthernWidget/DS3231
+void Carduino::setClockToSeconds(long timeInSeconds) {
+  uint8_t m = 0;
+  uint8_t ss = timeInSeconds % 60;
+  timeInSeconds /= 60;
+  uint8_t mm = timeInSeconds % 60;
+  timeInSeconds /= 60;
+  uint8_t hh = timeInSeconds % 24;
+  uint16_t days = timeInSeconds / 24;
+  uint8_t leap;
+  for (uint8_t yOff = 0; ; ++yOff) {
+    leap = isleapYear(yOff);
+    if (days < 365 + leap)
+      break;
+    days -= 365 + leap;
+  }
+  for (m = 1; ; ++m) {
+    uint8_t daysPerMonth = pgm_read_byte(daysInMonth + m - 1);
+    if (leap && m == 2)
+      ++daysPerMonth;
+    if (days < daysPerMonth)
+      break;
+    days -= daysPerMonth;
+  }
+  uint8_t d = days + 1;
+  uint8_t y = days / 365;
+  d = d % 365;
+  setClockToYMDHMS(y, m, d, hh, mm, ss);
+}
+
+void Carduino::setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss) {
   Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0x06);            // year
-  Wire.write(decToBcd(0));
+  Wire.write(decToBcd(y));
+  Wire.endTransmission();
+  Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0x05);            // month
-  Wire.write(decToBcd(1));
+  Wire.write(decToBcd(m));
+  Wire.endTransmission();
+  Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0x04);            // day
-  Wire.write(decToBcd(1));
+  Wire.write(decToBcd(d));
+  Wire.endTransmission();
+  Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0x02);            // hour
-  Wire.write(decToBcd(0) & 0b10111111);
+  Wire.write(decToBcd(hh) & 0b10111111);
+  Wire.endTransmission();
+  Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0x01);            // minute
-  Wire.write(decToBcd(0)); 
+  Wire.write(decToBcd(mm));
+  Wire.endTransmission();
+  Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0x00);            // second
-  Wire.write(decToBcd(0)); 
+  Wire.write(decToBcd(ss));
   Wire.endTransmission();
 }

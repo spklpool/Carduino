@@ -6926,21 +6926,64 @@ Source: AVX .. aphvc.pdf</description>
 <smd name="VCC2" x="7.65" y="0" dx="5.1" dy="2.5" layer="1" rot="R90"/>
 <text x="-7.62" y="-5.08" size="1.27" layer="25" align="center">&gt;NAME</text>
 <text x="6.35" y="-5.08" size="1.27" layer="27" align="center">&gt;VALUE</text>
-<wire x1="-6.75" y1="4.45" x2="6.75" y2="4.45" width="0.2" layer="51"/>
-<wire x1="6.75" y1="4.45" x2="6.75" y2="-4.45" width="0.2" layer="51"/>
-<wire x1="6.75" y1="-4.45" x2="-6.75" y2="-4.45" width="0.2" layer="51"/>
-<wire x1="-6.75" y1="-4.45" x2="-6.75" y2="4.45" width="0.2" layer="51"/>
 <wire x1="-9.9" y1="5.45" x2="9.9" y2="5.45" width="0.1" layer="51"/>
 <wire x1="9.9" y1="5.45" x2="9.9" y2="-5.45" width="0.1" layer="51"/>
 <wire x1="9.9" y1="-5.45" x2="-9.9" y2="-5.45" width="0.1" layer="51"/>
 <wire x1="-9.9" y1="-5.45" x2="-9.9" y2="5.45" width="0.1" layer="51"/>
-<wire x1="-6.75" y1="3" x2="-6.75" y2="4.45" width="0.1" layer="21"/>
-<wire x1="-6.75" y1="4.45" x2="6.75" y2="4.45" width="0.1" layer="21"/>
-<wire x1="6.75" y1="4.45" x2="6.75" y2="3" width="0.1" layer="21"/>
-<wire x1="-6.75" y1="-3" x2="-6.75" y2="-4.45" width="0.1" layer="21"/>
-<wire x1="-6.75" y1="-4.45" x2="6.75" y2="-4.45" width="0.1" layer="21"/>
-<wire x1="6.75" y1="-4.45" x2="6.75" y2="-3" width="0.1" layer="21"/>
-<smd name="GND" x="0" y="0" dx="6.4516" dy="3.2512" layer="1" roundness="100"/>
+<smd name="GND" x="0" y="0" dx="10.16" dy="10.16" layer="1" roundness="100"/>
+</package>
+<package name="SOIC127P600X175-8N">
+<description>&lt;b&gt;(OA)  Narrow, 3.90 mm Body [SOIC]&lt;/b&gt;&lt;br&gt;
+</description>
+<smd name="1" x="-2.7" y="1.905" dx="1.5" dy="0.65" layer="1"/>
+<smd name="2" x="-2.7" y="0.635" dx="1.5" dy="0.65" layer="1"/>
+<smd name="3" x="-2.7" y="-0.635" dx="1.5" dy="0.65" layer="1"/>
+<smd name="4" x="-2.7" y="-1.905" dx="1.5" dy="0.65" layer="1"/>
+<smd name="5" x="2.7" y="-1.905" dx="1.5" dy="0.65" layer="1"/>
+<smd name="6" x="2.7" y="-0.635" dx="1.5" dy="0.65" layer="1"/>
+<smd name="7" x="2.7" y="0.635" dx="1.5" dy="0.65" layer="1"/>
+<smd name="8" x="2.7" y="1.905" dx="1.5" dy="0.65" layer="1"/>
+<text x="0" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
+<text x="0" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
+<wire x1="-3.7" y1="2.7" x2="3.7" y2="2.7" width="0.05" layer="51"/>
+<wire x1="3.7" y1="2.7" x2="3.7" y2="-2.7" width="0.05" layer="51"/>
+<wire x1="3.7" y1="-2.7" x2="-3.7" y2="-2.7" width="0.05" layer="51"/>
+<wire x1="-3.7" y1="-2.7" x2="-3.7" y2="2.7" width="0.05" layer="51"/>
+<wire x1="-1.95" y1="2.45" x2="1.95" y2="2.45" width="0.1" layer="51"/>
+<wire x1="1.95" y1="2.45" x2="1.95" y2="-2.45" width="0.1" layer="51"/>
+<wire x1="1.95" y1="-2.45" x2="-1.95" y2="-2.45" width="0.1" layer="51"/>
+<wire x1="-1.95" y1="-2.45" x2="-1.95" y2="2.45" width="0.1" layer="51"/>
+<wire x1="-1.95" y1="1.18" x2="-0.68" y2="2.45" width="0.1" layer="51"/>
+<wire x1="-1.6" y1="2.45" x2="1.6" y2="2.45" width="0.2" layer="21"/>
+<wire x1="1.6" y1="2.45" x2="1.6" y2="-2.45" width="0.2" layer="21"/>
+<wire x1="1.6" y1="-2.45" x2="-1.6" y2="-2.45" width="0.2" layer="21"/>
+<wire x1="-1.6" y1="-2.45" x2="-1.6" y2="2.45" width="0.2" layer="21"/>
+<wire x1="-3.45" y1="2.58" x2="-1.95" y2="2.58" width="0.2" layer="21"/>
+</package>
+<package name="SOT95P270X145-5N">
+<description>&lt;b&gt;SOT-23-1&lt;/b&gt;&lt;br&gt;
+</description>
+<smd name="1" x="-1.25" y="0.95" dx="1.4" dy="0.6" layer="1"/>
+<smd name="2" x="-1.25" y="0" dx="1.4" dy="0.6" layer="1"/>
+<smd name="3" x="-1.25" y="-0.95" dx="1.4" dy="0.6" layer="1"/>
+<smd name="4" x="1.25" y="-0.95" dx="1.4" dy="0.6" layer="1"/>
+<smd name="5" x="1.25" y="0.95" dx="1.4" dy="0.6" layer="1"/>
+<text x="0" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
+<text x="0" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
+<wire x1="-2.2" y1="1.8" x2="2.2" y2="1.8" width="0.05" layer="51"/>
+<wire x1="2.2" y1="1.8" x2="2.2" y2="-1.8" width="0.05" layer="51"/>
+<wire x1="2.2" y1="-1.8" x2="-2.2" y2="-1.8" width="0.05" layer="51"/>
+<wire x1="-2.2" y1="-1.8" x2="-2.2" y2="1.8" width="0.05" layer="51"/>
+<wire x1="-0.775" y1="1.45" x2="0.775" y2="1.45" width="0.1" layer="51"/>
+<wire x1="0.775" y1="1.45" x2="0.775" y2="-1.45" width="0.1" layer="51"/>
+<wire x1="0.775" y1="-1.45" x2="-0.775" y2="-1.45" width="0.1" layer="51"/>
+<wire x1="-0.775" y1="-1.45" x2="-0.775" y2="1.45" width="0.1" layer="51"/>
+<wire x1="-0.775" y1="0.5" x2="0.175" y2="1.45" width="0.1" layer="51"/>
+<wire x1="-0.2" y1="1.45" x2="0.2" y2="1.45" width="0.2" layer="21"/>
+<wire x1="0.2" y1="1.45" x2="0.2" y2="-1.45" width="0.2" layer="21"/>
+<wire x1="0.2" y1="-1.45" x2="-0.2" y2="-1.45" width="0.2" layer="21"/>
+<wire x1="-0.2" y1="-1.45" x2="-0.2" y2="1.45" width="0.2" layer="21"/>
+<wire x1="-1.95" y1="1.5" x2="-0.55" y2="1.5" width="0.2" layer="21"/>
 </package>
 </packages>
 <symbols>
@@ -7023,6 +7066,35 @@ Source: AVX .. aphvc.pdf</description>
 <text x="16.51" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
 <pin name="GND" x="0" y="0" length="middle"/>
 <pin name="VCC" x="0" y="-2.54" length="middle"/>
+</symbol>
+<symbol name="NTMD4184PFR2G">
+<wire x1="5.08" y1="2.54" x2="20.32" y2="2.54" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-10.16" x2="20.32" y2="2.54" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-10.16" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
+<text x="21.59" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
+<text x="21.59" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
+<pin name="A_1" x="0" y="0" length="middle"/>
+<pin name="A_2" x="0" y="-2.54" length="middle"/>
+<pin name="S" x="0" y="-5.08" length="middle"/>
+<pin name="G" x="0" y="-7.62" length="middle"/>
+<pin name="C_2" x="25.4" y="0" length="middle" rot="R180"/>
+<pin name="C_1" x="25.4" y="-2.54" length="middle" rot="R180"/>
+<pin name="D_2" x="25.4" y="-5.08" length="middle" rot="R180"/>
+<pin name="D_1" x="25.4" y="-7.62" length="middle" rot="R180"/>
+</symbol>
+<symbol name="MCP73831T-3ACI_OT">
+<wire x1="5.08" y1="2.54" x2="22.86" y2="2.54" width="0.254" layer="94"/>
+<wire x1="22.86" y1="-7.62" x2="22.86" y2="2.54" width="0.254" layer="94"/>
+<wire x1="22.86" y1="-7.62" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="-7.62" width="0.254" layer="94"/>
+<text x="24.13" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
+<text x="24.13" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
+<pin name="STAT" x="0" y="0" length="middle"/>
+<pin name="VSS" x="0" y="-2.54" length="middle"/>
+<pin name="VBAT" x="0" y="-5.08" length="middle"/>
+<pin name="VDD" x="27.94" y="0" length="middle" rot="R180"/>
+<pin name="PROG" x="27.94" y="-2.54" length="middle" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -7161,6 +7233,65 @@ Source: &lt;a href="https://linxtechnologies.com/wp/wp-content/uploads/bat-hld-0
 <attribute name="MANUFACTURER_PART_NUMBER" value="BAT-HLD-012-SMT" constant="no"/>
 <attribute name="MOUSER_PART_NUMBER" value="712-BAT-HLD-012-SMT" constant="no"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Linx-Technologies/BAT-HLD-012-SMT?qs=Z0V%2FpEl%252BOGfZsSJil9WIXw%3D%3D" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="NTMD4184PFR2G" prefix="IC">
+<description>&lt;b&gt;MOSFET PFET FTKY S08 30V TR 3.8A&lt;/b&gt;&lt;p&gt;
+Source: &lt;a href="https://www.onsemi.com/pub/Collateral/NTMD4184PF-D.PDF"&gt; Datasheet &lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="NTMD4184PFR2G" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOIC127P600X175-8N">
+<connects>
+<connect gate="G$1" pin="A_1" pad="1"/>
+<connect gate="G$1" pin="A_2" pad="2"/>
+<connect gate="G$1" pin="C_1" pad="7"/>
+<connect gate="G$1" pin="C_2" pad="8"/>
+<connect gate="G$1" pin="D_1" pad="5"/>
+<connect gate="G$1" pin="D_2" pad="6"/>
+<connect gate="G$1" pin="G" pad="4"/>
+<connect gate="G$1" pin="S" pad="3"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="MOSFET PFET FTKY S08 30V TR 3.8A" constant="no"/>
+<attribute name="HEIGHT" value="1.75mm" constant="no"/>
+<attribute name="MANUFACTURER_NAME" value="ON Semiconductor" constant="no"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="NTMD4184PFR2G" constant="no"/>
+<attribute name="MOUSER_PART_NUMBER" value="863-NTMD4184PFR2G" constant="no"/>
+<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/ON-Semiconductor/NTMD4184PFR2G?qs=WOJDpfhxrCZPr5mnWPOi%252BQ%3D%3D" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="MCP73831T-3ACI_OT" prefix="IC">
+<description>&lt;b&gt;MICROCHIP - MCP73831T-3ACI/OT - BATT CHARGER, -40 TO 85DEG C&lt;/b&gt;&lt;p&gt;
+Source: &lt;a href="http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pdf"&gt; Datasheet &lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="MCP73831T-3ACI_OT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="SOT95P270X145-5N">
+<connects>
+<connect gate="G$1" pin="PROG" pad="5"/>
+<connect gate="G$1" pin="STAT" pad="1"/>
+<connect gate="G$1" pin="VBAT" pad="3"/>
+<connect gate="G$1" pin="VDD" pad="4"/>
+<connect gate="G$1" pin="VSS" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="MICROCHIP - MCP73831T-3ACI/OT - BATT CHARGER, -40 TO 85DEG C" constant="no"/>
+<attribute name="HEIGHT" value="1.45mm" constant="no"/>
+<attribute name="MANUFACTURER_NAME" value="Microchip" constant="no"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="MCP73831T-3ACI/OT" constant="no"/>
+<attribute name="MOUSER_PART_NUMBER" value="579-MCP73831T-3ACIOT" constant="no"/>
+<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Microchip-Technology/MCP73831T-3ACI-OT?qs=yUQqVecv4quInAWkk8YFWg%3D%3D" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -7861,33 +7992,6 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 </deviceset>
 </devicesets>
 </library>
-<library name="supply1">
-<packages>
-</packages>
-<symbols>
-<symbol name="+5V">
-<wire x1="1.27" y1="-1.905" x2="0" y2="0" width="0.254" layer="94"/>
-<wire x1="0" y1="0" x2="-1.27" y2="-1.905" width="0.254" layer="94"/>
-<text x="-2.54" y="-5.08" size="1.778" layer="96" rot="R90">&gt;VALUE</text>
-<pin name="+5V" x="0" y="-2.54" visible="off" length="short" direction="sup" rot="R90"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="+5V" prefix="P+">
-<description>&lt;b&gt;SUPPLY SYMBOL&lt;/b&gt;</description>
-<gates>
-<gate name="1" symbol="+5V" x="0" y="0"/>
-</gates>
-<devices>
-<device name="">
-<technologies>
-<technology name=""/>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="USB">
 <packages>
 <package name="USB3140-30-0170-0-C">
@@ -8131,6 +8235,92 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <hole x="0" y="-4.4958" drill="1.8034"/>
 <hole x="0" y="4.4958" drill="1.8034"/>
 </package>
+<package name="JST-PH-2-SMT-RA" urn="urn:adsk.eagle:footprint:6240046/1" library_version="2">
+<description>2-Pin JST PH Series Right-Angle Connector (+/- for batteries)</description>
+<wire x1="-4" y1="3" x2="4" y2="3" width="0.2032" layer="51"/>
+<wire x1="4" y1="3" x2="4" y2="-4.5" width="0.2032" layer="51"/>
+<wire x1="-4" y1="-4.5" x2="-4" y2="3" width="0.2032" layer="51"/>
+<wire x1="3.2" y1="-2" x2="-3.2" y2="-2" width="0.2032" layer="51"/>
+<wire x1="-3.2" y1="-2" x2="-3.2" y2="-4.5" width="0.2032" layer="51"/>
+<wire x1="-3.2" y1="-4.5" x2="-4" y2="-4.5" width="0.2032" layer="51"/>
+<wire x1="4" y1="-4.5" x2="3.2" y2="-4.5" width="0.2032" layer="51"/>
+<wire x1="3.2" y1="-4.5" x2="3.2" y2="-2" width="0.2032" layer="51"/>
+<wire x1="-2.25" y1="3" x2="2.25" y2="3" width="0.127" layer="21"/>
+<wire x1="4" y1="-0.5" x2="4" y2="-4.5" width="0.127" layer="21"/>
+<wire x1="4" y1="-4.5" x2="3.15" y2="-4.5" width="0.127" layer="21"/>
+<wire x1="3.15" y1="-4.5" x2="3.15" y2="-2" width="0.127" layer="21"/>
+<wire x1="3.15" y1="-2" x2="1.75" y2="-2" width="0.127" layer="21"/>
+<wire x1="-1.75" y1="-2" x2="-3.15" y2="-2" width="0.127" layer="21"/>
+<wire x1="-3.15" y1="-2" x2="-3.15" y2="-4.5" width="0.127" layer="21"/>
+<wire x1="-3.15" y1="-4.5" x2="-4" y2="-4.5" width="0.127" layer="21"/>
+<wire x1="-4" y1="-4.5" x2="-4" y2="-0.5" width="0.127" layer="21"/>
+<smd name="2" x="-1" y="-3.7" dx="1" dy="4.6" layer="1"/>
+<smd name="1" x="1" y="-3.7" dx="1" dy="4.6" layer="1"/>
+<smd name="NC1" x="-3.4" y="1.5" dx="3.4" dy="1.6" layer="1" rot="R90"/>
+<smd name="NC2" x="3.4" y="1.5" dx="3.4" dy="1.6" layer="1" rot="R90"/>
+<text x="-2.54" y="3.81" size="1.27" layer="25" font="vector">&gt;Name</text>
+<text x="-2.54" y="-7.62" size="1.27" layer="27" font="vector">&gt;Value</text>
+<text x="2.286" y="-6.096" size="1.4224" layer="21" ratio="12">+</text>
+<text x="-3.429" y="-6.096" size="1.4224" layer="21" ratio="12">-</text>
+</package>
+<package name="JST-PH-2-THM" urn="urn:adsk.eagle:footprint:6240047/1" library_version="2">
+<description>4UCon #01528
+http://www.4uconnector.com/online/object/4udrawing/01528.pdf</description>
+<wire x1="3" y1="-1.7" x2="0.5" y2="-1.7" width="0.127" layer="21"/>
+<wire x1="0.5" y1="-1.7" x2="0.5" y2="-2.2" width="0.127" layer="21"/>
+<wire x1="0.5" y1="-2.2" x2="-0.5" y2="-2.2" width="0.127" layer="21"/>
+<wire x1="-0.5" y1="-2.2" x2="-0.5" y2="-1.7" width="0.127" layer="21"/>
+<wire x1="-0.5" y1="-1.7" x2="-3" y2="-1.7" width="0.127" layer="21"/>
+<wire x1="-3" y1="-1.7" x2="-3" y2="2.8" width="0.127" layer="21"/>
+<wire x1="-3" y1="2.8" x2="3" y2="2.8" width="0.127" layer="21"/>
+<wire x1="3" y1="2.8" x2="3" y2="-1.7" width="0.127" layer="21"/>
+<pad name="1" x="1" y="0" drill="0.8" diameter="1.4224" rot="R180"/>
+<pad name="2" x="-1" y="0" drill="0.8" diameter="1.4224" rot="R180"/>
+<text x="-2.8" y="-3.5" size="1.27" layer="25" font="vector">&gt;NAME</text>
+<text x="4.064" y="0.762" size="1.27" layer="21" font="vector" rot="R180">+</text>
+<text x="-3.302" y="0.762" size="1.27" layer="21" font="vector" rot="R180">-</text>
+</package>
+<package name="JST-PH-2-THM-RA" urn="urn:adsk.eagle:footprint:6240048/1" library_version="2">
+<description>&lt;b&gt;S2B-PH-K-S&lt;/b&gt; 
+&lt;p&gt;
+JST PH 2-pin thru-home side entry</description>
+<wire x1="-3" y1="6.3" x2="3" y2="6.3" width="0.127" layer="51"/>
+<wire x1="3" y1="6.3" x2="3" y2="-1.4" width="0.127" layer="51"/>
+<wire x1="-3" y1="-1.4" x2="-3" y2="6.3" width="0.127" layer="51"/>
+<wire x1="-2.2" y1="-1.4" x2="-3" y2="-1.4" width="0.127" layer="51"/>
+<wire x1="3" y1="-1.4" x2="2.2" y2="-1.4" width="0.127" layer="51"/>
+<wire x1="-2.2" y1="-1.4" x2="-2.2" y2="-0.3" width="0.127" layer="21"/>
+<wire x1="-2.2" y1="-0.3" x2="2.1" y2="-0.3" width="0.127" layer="21"/>
+<wire x1="2.1" y1="-0.3" x2="2.1" y2="-1.4" width="0.127" layer="21"/>
+<wire x1="2.1" y1="-1.4" x2="2.2" y2="-1.4" width="0.127" layer="21"/>
+<wire x1="-0.3" y1="6.3" x2="-0.3" y2="3.4" width="0.127" layer="21"/>
+<wire x1="-0.3" y1="3.4" x2="0.3" y2="3.4" width="0.127" layer="21"/>
+<wire x1="0.3" y1="3.4" x2="0.3" y2="6.3" width="0.127" layer="21"/>
+<pad name="2" x="-1" y="0" drill="0.8" diameter="1.4224"/>
+<pad name="1" x="1" y="0" drill="0.8" diameter="1.4224"/>
+<text x="-2.7" y="-3.8" size="1.27" layer="25" font="vector">&gt;NAME</text>
+<text x="0.486" y="-2.096" size="1.4224" layer="21" ratio="12">+</text>
+<text x="-1.429" y="-1.896" size="1.4224" layer="21" ratio="12">-</text>
+</package>
+<package name="JST-PH-2-SMT" urn="urn:adsk.eagle:footprint:6240117/1" library_version="2">
+<wire x1="-4" y1="2.5" x2="4" y2="2.5" width="0.2032" layer="51"/>
+<wire x1="4" y1="2.5" x2="4" y2="-2.5" width="0.2032" layer="51"/>
+<wire x1="-4" y1="-2.5" x2="-4" y2="2.5" width="0.2032" layer="51"/>
+<wire x1="4" y1="-2.5" x2="-4" y2="-2.5" width="0.2032" layer="51"/>
+<wire x1="-2.25" y1="2.5" x2="2.25" y2="2.5" width="0.127" layer="21"/>
+<wire x1="4" y1="-0.5" x2="4" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="4" y1="-2.5" x2="1.75" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="-1.75" y1="-2.5" x2="-4" y2="-2.5" width="0.127" layer="21"/>
+<wire x1="-4" y1="-2.5" x2="-4" y2="-0.5" width="0.127" layer="21"/>
+<smd name="1" x="-1" y="-1.8" dx="1" dy="5.5" layer="1"/>
+<smd name="2" x="1" y="-1.8" dx="1" dy="5.5" layer="1"/>
+<smd name="NC1" x="-3.4" y="0" dx="3.4" dy="1.6" layer="1" rot="R90"/>
+<smd name="NC2" x="3.4" y="0" dx="3.4" dy="1.6" layer="1" rot="R90"/>
+<text x="-2.54" y="3.81" size="1.27" layer="25" font="vector">&gt;Name</text>
+<text x="-2.54" y="-7.62" size="1.27" layer="27" font="vector">&gt;Value</text>
+<text x="-2.914" y="-6.096" size="1.4224" layer="21" ratio="12">+</text>
+<text x="2.271" y="-6.096" size="1.4224" layer="21" ratio="12">-</text>
+</package>
 </packages>
 <packages3d>
 <package3d name="B3F-40XX" urn="urn:adsk.eagle:package:6240927/1" type="box" library_version="2">
@@ -8143,6 +8333,32 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <description>&lt;b&gt;OMRON SWITCH&lt;/b&gt;</description>
 <packageinstances>
 <packageinstance name="B3F-40XX-ROUND"/>
+</packageinstances>
+</package3d>
+<package3d name="JST-PH-2-SMT-RA" urn="urn:adsk.eagle:package:6240692/1" type="box" library_version="2">
+<description>2-Pin JST PH Series Right-Angle Connector (+/- for batteries)</description>
+<packageinstances>
+<packageinstance name="JST-PH-2-SMT-RA"/>
+</packageinstances>
+</package3d>
+<package3d name="JST-PH-2-THM" urn="urn:adsk.eagle:package:6240693/1" type="box" library_version="2">
+<description>4UCon #01528
+http://www.4uconnector.com/online/object/4udrawing/01528.pdf</description>
+<packageinstances>
+<packageinstance name="JST-PH-2-THM"/>
+</packageinstances>
+</package3d>
+<package3d name="JST-PH-2-THM-RA" urn="urn:adsk.eagle:package:6240694/1" type="box" library_version="2">
+<description>&lt;b&gt;S2B-PH-K-S&lt;/b&gt; 
+&lt;p&gt;
+JST PH 2-pin thru-home side entry</description>
+<packageinstances>
+<packageinstance name="JST-PH-2-THM-RA"/>
+</packageinstances>
+</package3d>
+<package3d name="JST-PH-2-SMT" urn="urn:adsk.eagle:package:6240763/1" type="box" library_version="2">
+<packageinstances>
+<packageinstance name="JST-PH-2-SMT"/>
 </packageinstances>
 </package3d>
 </packages3d>
@@ -8167,6 +8383,16 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pin name="S" x="0" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
 <pin name="S1" x="2.54" y="5.08" visible="pad" length="short" direction="pas" swaplevel="1" rot="R270"/>
 <pin name="P1" x="2.54" y="-5.08" visible="pad" length="short" direction="pas" swaplevel="2" rot="R90"/>
+</symbol>
+<symbol name="PINHD2" urn="urn:adsk.eagle:symbol:6239527/1" library_version="2">
+<wire x1="-6.35" y1="-2.54" x2="1.27" y2="-2.54" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.27" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="5.08" x2="-6.35" y2="5.08" width="0.4064" layer="94"/>
+<wire x1="-6.35" y1="5.08" x2="-6.35" y2="-2.54" width="0.4064" layer="94"/>
+<text x="-6.35" y="5.715" size="1.778" layer="95">&gt;NAME</text>
+<text x="-6.35" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-2.54" y="2.54" visible="pad" length="short" direction="pas" function="dot"/>
+<pin name="2" x="-2.54" y="0" visible="pad" length="short" direction="pas" function="dot"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -8204,6 +8430,69 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 </connects>
 <package3dinstances>
 <package3dinstance package3d_urn="urn:adsk.eagle:package:6240926/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="JST_2PIN" urn="urn:adsk.eagle:component:6241017/1" prefix="CN" uservalue="yes" library_version="2">
+<description>&lt;b&gt;JST 2-Pin Connectors of various flavors&lt;/b&gt;
+
+&lt;ul&gt;
+&lt;li&gt;SMT-RA (S2B-PH-SM4) 4UConnector #17311&lt;/li&gt;
+&lt;li&gt;SMT  (B2B-PH-SM4)&lt;/li&gt;
+&lt;li&gt;THM-RA (S2B-PH)&lt;/li&gt;
+&lt;li&gt;THM  (B2B-PH)&lt;/li&gt;
+&lt;/ul&gt;</description>
+<gates>
+<gate name="G$1" symbol="PINHD2" x="2.54" y="0"/>
+</gates>
+<devices>
+<device name="-SMT-RA" package="JST-PH-2-SMT-RA">
+<connects>
+<connect gate="G$1" pin="1" pad="2"/>
+<connect gate="G$1" pin="2" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:6240692/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-THM" package="JST-PH-2-THM">
+<connects>
+<connect gate="G$1" pin="1" pad="2"/>
+<connect gate="G$1" pin="2" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:6240693/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-THM-RA" package="JST-PH-2-THM-RA">
+<connects>
+<connect gate="G$1" pin="1" pad="2"/>
+<connect gate="G$1" pin="2" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:6240694/1"/>
+</package3dinstances>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="-SMT" package="JST-PH-2-SMT">
+<connects>
+<connect gate="G$1" pin="1" pad="2"/>
+<connect gate="G$1" pin="2" pad="1"/>
+</connects>
+<package3dinstances>
+<package3dinstance package3d_urn="urn:adsk.eagle:package:6240763/1"/>
 </package3dinstances>
 <technologies>
 <technology name=""/>
@@ -8313,7 +8602,6 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <part name="RX" library="adafruit" deviceset="LED" device="CHIP-LED0805" value="Green"/>
 <part name="R2" library="adafruit" deviceset="R-US_" device="R0805" value="1K"/>
 <part name="R3" library="adafruit" deviceset="R-US_" device="R0805" value="1K"/>
-<part name="P+1" library="supply1" deviceset="+5V" device=""/>
 <part name="IC1" library="SamacSys_Parts" deviceset="DS3231M+TRL" device=""/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="SUPPLY4" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
@@ -8326,6 +8614,21 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <part name="R6" library="adafruit" deviceset="R-US_" device="R0805" value="4.7K"/>
 <part name="SUPPLY12" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="SUPPLY24" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="IC7" library="SamacSys_Parts" deviceset="NTMD4184PFR2G" device=""/>
+<part name="CN1" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="JST_2PIN" device="-SMT-RA" package3d_urn="urn:adsk.eagle:package:6240692/1"/>
+<part name="SUPPLY22" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="IC9" library="SamacSys_Parts" deviceset="MCP73831T-3ACI_OT" device=""/>
+<part name="R16" library="adafruit" deviceset="R-US_" device="R0805" value="470"/>
+<part name="CHARGING" library="adafruit" deviceset="LED" device="CHIP-LED0805" value="Red"/>
+<part name="SUPPLY25" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
+<part name="SUPPLY26" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="R21" library="adafruit" deviceset="R-US_" device="R0805" value="100K"/>
+<part name="SUPPLY27" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="R22" library="adafruit" deviceset="R-US_" device="R0805" value="10K"/>
+<part name="SUPPLY28" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="C2" library="resistor" deviceset="C-US" device="C1206" value="4.7uF"/>
+<part name="C3" library="resistor" deviceset="C-US" device="C1206" value="1uF"/>
+<part name="SUPPLY29" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8525,9 +8828,6 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <instance part="R3" gate="G$1" x="193.04" y="96.52" smashed="yes">
 <attribute name="VALUE" x="194.31" y="93.218" size="1.778" layer="96"/>
 </instance>
-<instance part="P+1" gate="1" x="185.42" y="96.52" smashed="yes" rot="R90">
-<attribute name="VALUE" x="185.42" y="99.06" size="1.778" layer="96" rot="R180"/>
-</instance>
 <instance part="IC1" gate="G$1" x="170.18" y="-15.24" smashed="yes">
 <attribute name="NAME" x="201.93" y="-7.62" size="1.778" layer="95" align="center-left"/>
 <attribute name="VALUE" x="176.53" y="-10.16" size="1.778" layer="96" align="center-left"/>
@@ -8559,6 +8859,54 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 </instance>
 <instance part="SUPPLY24" gate="GND" x="149.86" y="-30.48" smashed="yes">
 <attribute name="VALUE" x="147.955" y="-33.655" size="1.778" layer="96"/>
+</instance>
+<instance part="IC7" gate="G$1" x="228.6" y="35.56" smashed="yes">
+<attribute name="VALUE" x="229.87" y="40.64" size="1.778" layer="96" align="center-left"/>
+</instance>
+<instance part="CN1" gate="G$1" x="266.7" y="27.94" smashed="yes">
+<attribute name="NAME" x="260.35" y="33.655" size="1.778" layer="95"/>
+<attribute name="VALUE" x="260.35" y="22.86" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY22" gate="GND" x="271.78" y="40.64" smashed="yes" rot="R180">
+<attribute name="VALUE" x="273.685" y="43.815" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="IC9" gate="G$1" x="246.38" y="12.7" smashed="yes">
+<attribute name="VALUE" x="247.65" y="2.54" size="1.778" layer="96" align="center-left"/>
+</instance>
+<instance part="R16" gate="G$1" x="233.68" y="17.78" smashed="yes" rot="R90">
+<attribute name="VALUE" x="240.03" y="21.082" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="CHARGING" gate="G$1" x="236.22" y="12.7" smashed="yes" rot="R90">
+<attribute name="NAME" x="248.412" y="16.256" size="1.778" layer="95" rot="R180"/>
+<attribute name="VALUE" x="235.712" y="10.795" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="SUPPLY25" gate="G$1" x="256.54" y="40.64" smashed="yes">
+<attribute name="VALUE" x="254.635" y="43.815" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY26" gate="GND" x="241.3" y="7.62" smashed="yes">
+<attribute name="VALUE" x="239.395" y="4.445" size="1.778" layer="96"/>
+</instance>
+<instance part="R21" gate="G$1" x="223.52" y="33.02" smashed="yes" rot="R90">
+<attribute name="VALUE" x="227.33" y="26.162" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="SUPPLY27" gate="GND" x="223.52" y="40.64" smashed="yes" rot="R180">
+<attribute name="VALUE" x="225.425" y="43.815" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="R22" gate="G$1" x="279.4" y="15.24" smashed="yes" rot="R90">
+<attribute name="VALUE" x="281.178" y="13.97" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="SUPPLY28" gate="GND" x="279.4" y="22.86" smashed="yes" rot="R180">
+<attribute name="VALUE" x="281.305" y="26.035" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="C2" gate="G$1" x="289.56" y="20.32" smashed="yes" rot="R270">
+<attribute name="NAME" x="290.195" y="19.304" size="1.778" layer="95" rot="R270"/>
+<attribute name="VALUE" x="285.369" y="19.304" size="1.778" layer="96" rot="R270"/>
+</instance>
+<instance part="C3" gate="G$1" x="261.62" y="38.1" smashed="yes" rot="R270">
+<attribute name="VALUE" x="260.096" y="41.529" size="1.778" layer="96"/>
+</instance>
+<instance part="SUPPLY29" gate="G$1" x="185.42" y="96.52" smashed="yes" rot="R90">
+<attribute name="VALUE" x="182.245" y="94.615" size="1.778" layer="96" rot="R90"/>
 </instance>
 </instances>
 <busses>
@@ -8629,6 +8977,31 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <segment>
 <pinref part="R6" gate="G$1" pin="2"/>
 <pinref part="SUPPLY24" gate="GND" pin="GND"/>
+</segment>
+<segment>
+<pinref part="CN1" gate="G$1" pin="1"/>
+<pinref part="SUPPLY22" gate="GND" pin="GND"/>
+<wire x1="264.16" y1="30.48" x2="271.78" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="271.78" y1="30.48" x2="271.78" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="C3" gate="G$1" pin="1"/>
+<wire x1="264.16" y1="38.1" x2="271.78" y2="38.1" width="0.1524" layer="91"/>
+<junction x="271.78" y="38.1"/>
+</segment>
+<segment>
+<pinref part="IC9" gate="G$1" pin="VSS"/>
+<pinref part="SUPPLY26" gate="GND" pin="GND"/>
+<wire x1="246.38" y1="10.16" x2="241.3" y2="10.16" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R21" gate="G$1" pin="2"/>
+<pinref part="SUPPLY27" gate="GND" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R22" gate="G$1" pin="2"/>
+<pinref part="SUPPLY28" gate="GND" pin="GND"/>
+<pinref part="C2" gate="G$1" pin="2"/>
+<wire x1="284.48" y1="20.32" x2="279.4" y2="20.32" width="0.1524" layer="91"/>
+<junction x="279.4" y="20.32"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -8809,6 +9182,14 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <segment>
 <pinref part="SUPPLY10" gate="G$1" pin="VCC"/>
 <pinref part="U$5" gate="G$1" pin="VBUS"/>
+<wire x1="205.74" y1="43.18" x2="205.74" y2="22.86" width="0.1524" layer="91"/>
+<junction x="205.74" y="43.18"/>
+<pinref part="R16" gate="G$1" pin="2"/>
+<wire x1="233.68" y1="22.86" x2="274.32" y2="22.86" width="0.1524" layer="91"/>
+<pinref part="IC9" gate="G$1" pin="VDD"/>
+<wire x1="274.32" y1="22.86" x2="274.32" y2="12.7" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="22.86" x2="233.68" y2="22.86" width="0.1524" layer="91"/>
+<junction x="233.68" y="22.86"/>
 </segment>
 <segment>
 <pinref part="S1" gate="1" pin="P1"/>
@@ -8822,6 +9203,27 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <wire x1="129.54" y1="93.98" x2="137.16" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="93.98" x2="142.24" y2="88.9" width="0.1524" layer="91"/>
 <junction x="142.24" y="88.9"/>
+</segment>
+<segment>
+<pinref part="IC7" gate="G$1" pin="S"/>
+<wire x1="228.6" y1="30.48" x2="226.06" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="30.48" x2="226.06" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="226.06" y1="38.1" x2="254" y2="38.1" width="0.1524" layer="91"/>
+<pinref part="IC7" gate="G$1" pin="C_2"/>
+<wire x1="254" y1="38.1" x2="254" y2="35.56" width="0.1524" layer="91"/>
+<pinref part="SUPPLY25" gate="G$1" pin="VCC"/>
+<wire x1="256.54" y1="38.1" x2="254" y2="38.1" width="0.1524" layer="91"/>
+<junction x="254" y="38.1"/>
+<pinref part="C3" gate="G$1" pin="2"/>
+<junction x="256.54" y="38.1"/>
+</segment>
+<segment>
+<wire x1="190.5" y1="101.6" x2="187.96" y2="101.6" width="0.1524" layer="91"/>
+<wire x1="187.96" y1="101.6" x2="187.96" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="R2" gate="G$1" pin="1"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<pinref part="SUPPLY29" gate="G$1" pin="VCC"/>
+<junction x="187.96" y="96.52"/>
 </segment>
 </net>
 <net name="N$53" class="0">
@@ -9157,12 +9559,13 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pinref part="IC2" gate="1" pin="RXD"/>
 <wire x1="177.8" y1="83.82" x2="177.8" y2="106.68" width="0.1524" layer="91"/>
 <pinref part="R1" gate="G$1" pin="2"/>
-<wire x1="177.8" y1="106.68" x2="175.26" y2="93.98" width="0.1524" layer="91"/>
-<wire x1="177.8" y1="106.68" x2="233.68" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="106.68" x2="175.26" y2="106.68" width="0.1524" layer="91"/>
+<wire x1="175.26" y1="106.68" x2="175.26" y2="93.98" width="0.1524" layer="91"/>
+<wire x1="177.8" y1="106.68" x2="294.64" y2="106.68" width="0.1524" layer="91"/>
 <junction x="177.8" y="106.68"/>
 <pinref part="IC8" gate="G$1" pin="PA0/!RESET!/UPDI"/>
-<wire x1="233.68" y1="0" x2="228.6" y2="0" width="0.1524" layer="91"/>
-<wire x1="233.68" y1="106.68" x2="233.68" y2="0" width="0.1524" layer="91"/>
+<wire x1="294.64" y1="0" x2="228.6" y2="0" width="0.1524" layer="91"/>
+<wire x1="294.64" y1="106.68" x2="294.64" y2="0" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$104" class="0">
@@ -9177,15 +9580,6 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <pinref part="TX" gate="G$1" pin="A"/>
 <pinref part="R3" gate="G$1" pin="2"/>
 <wire x1="198.12" y1="91.44" x2="198.12" y2="96.52" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="+5V" class="0">
-<segment>
-<wire x1="190.5" y1="101.6" x2="187.96" y2="96.52" width="0.1524" layer="91"/>
-<junction x="187.96" y="96.52"/>
-<pinref part="R2" gate="G$1" pin="1"/>
-<pinref part="R3" gate="G$1" pin="1"/>
-<pinref part="P+1" gate="1" pin="+5V"/>
 </segment>
 </net>
 <net name="N$106" class="0">
@@ -9471,6 +9865,53 @@ Source: http://www.ftdichip.com/Documents/DataSheets/DS_FT232R_v104.pdf</descrip
 <wire x1="162.56" y1="17.78" x2="172.72" y2="7.62" width="0.1524" layer="91"/>
 <pinref part="IC8" gate="G$1" pin="PA4"/>
 <wire x1="172.72" y1="7.62" x2="187.96" y2="7.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$36" class="0">
+<segment>
+<pinref part="IC7" gate="G$1" pin="A_1"/>
+<wire x1="228.6" y1="35.56" x2="236.22" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="236.22" y1="35.56" x2="236.22" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="IC7" gate="G$1" pin="G"/>
+<wire x1="236.22" y1="27.94" x2="228.6" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="R21" gate="G$1" pin="1"/>
+<wire x1="228.6" y1="27.94" x2="223.52" y2="27.94" width="0.1524" layer="91"/>
+<junction x="228.6" y="27.94"/>
+</segment>
+</net>
+<net name="N$38" class="0">
+<segment>
+<pinref part="IC7" gate="G$1" pin="D_1"/>
+<pinref part="CN1" gate="G$1" pin="2"/>
+<wire x1="254" y1="27.94" x2="264.16" y2="27.94" width="0.1524" layer="91"/>
+<pinref part="IC9" gate="G$1" pin="VBAT"/>
+<wire x1="246.38" y1="7.62" x2="292.1" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="292.1" y1="7.62" x2="292.1" y2="20.32" width="0.1524" layer="91"/>
+<wire x1="292.1" y1="20.32" x2="292.1" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="292.1" y1="27.94" x2="264.16" y2="27.94" width="0.1524" layer="91"/>
+<junction x="264.16" y="27.94"/>
+<pinref part="C2" gate="G$1" pin="1"/>
+<junction x="292.1" y="20.32"/>
+</segment>
+</net>
+<net name="N$39" class="0">
+<segment>
+<pinref part="IC9" gate="G$1" pin="STAT"/>
+<pinref part="CHARGING" gate="G$1" pin="C"/>
+<wire x1="241.3" y1="12.7" x2="246.38" y2="12.7" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$40" class="0">
+<segment>
+<pinref part="CHARGING" gate="G$1" pin="A"/>
+<pinref part="R16" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="N$37" class="0">
+<segment>
+<pinref part="R22" gate="G$1" pin="1"/>
+<pinref part="IC9" gate="G$1" pin="PROG"/>
+<wire x1="279.4" y1="10.16" x2="274.32" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

@@ -66,12 +66,11 @@
 
 #define CARDUINO_LED_COUNT 32
 #define HOURS_TO_SECONDS_MULTIPLIER 3600
-
-//#define SECONDS_IN_DOT 18000 // 60*60*5;
-#define SECONDS_IN_DOT 5;
-
+#define SECONDS_IN_DOT 18000 // 60*60*5;
 #define DOTS_IN_EPOCH 24
 #define MILLIS_IN_SECOND 1000
+#define RESET_CYCLE_THRESHOLD 50
+#define ADVANCE_CYCLE_THRESHOLD 10
 
 class Carduino
 {
@@ -88,6 +87,13 @@ class Carduino
     void printNow();
     long getNowFromClock();
     void resetClockToZero();
+    void setClockToSeconds(long timeInSeconds);
+    void setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
+    void advanceClockByOneDot();
+    bool isButtonPressed();
+    void fireworks1();
+    void fireworks2();
+    void sequence1();
     
   private:
     byte decToBcd(byte val);
@@ -96,6 +102,8 @@ class Carduino
     uint32_t epochsElapsed = 0;
     uint8_t getValueAtIndex(uint32_t data, byte index);
     uint8_t resetCycleCount = 0;
+    uint8_t advanceCycleCount = 0;
+    bool buttonPressed = false;
 };
 
 
