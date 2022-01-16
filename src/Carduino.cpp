@@ -99,6 +99,9 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
     advanceCycleCount = 0;
   }
 
+//  long nowSeconds = getNowFromClock();
+//  long beginingOfTimeSeconds = getSecondsAtBeginingOfTime();
+//  long secondsElapsed = nowSeconds - beginingOfTimeSeconds;
   long secondsElapsed = currentTime * speedMultiplier;
   dotsElapsed = secondsElapsed/SECONDS_IN_DOT;
   epochsElapsed = dotsElapsed/DOTS_IN_EPOCH;
@@ -193,6 +196,16 @@ bool Carduino::isButtonPressed() {
   }
 }
 
+long Carduino::getSecondsAtBeginingOfTime() {
+  return getSecondsFormYMDHHMMSS(BEGINING_OF_TIME_YEAR, BEGINING_OF_TIME_MONTH, BEGINING_OF_TIME_DAY, 
+                                 BEGINING_OF_TIME_HOURS, BEGINING_OF_TIME_MINUTES, BEGINING_OF_TIME_SECONDS);
+}
+
+long Carduino::getSecondsFormYMDHHMMSS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss) {
+  uint16_t days = date2days(y, m, d);
+  return time2long(days, hh, mm, ss);
+}
+
 // read current date and time from DS3231 clock
 // reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
 long Carduino::getNowFromClock() {
@@ -261,6 +274,23 @@ void Carduino::setClockToSeconds(long timeInSeconds) {
   uint8_t y = days / 365;
   d = d % 365;
   setClockToYMDHMS(y, m, d, hh, mm, ss);
+}
+
+void Carduino::setClockToCompilerTime() {
+  uint8_t y = 0;
+  uint8_t m = 0;
+  uint8_t d = 0;
+  uint8_t hh = 0;
+  uint8_t mm = 0;
+  uint8_t ss = 0;
+  uint8_t yOff = 0;
+   static const char month_names[] = "JanFebMarAprMayJunJulAugSepOctNovDec";
+   static char buff[4] = {'0','0','0','0'};
+   sscanf(__DATE__, "%s %hhu %d", buff, &d, &y);
+   yOff = y >= 2000 ? y - 2000 : y;
+   m = (strstr(month_names, buff) - month_names) / 3 + 1;
+   sscanf(__TIME__, "%hhu:%hhu:%hhu", &hh, &mm, &ss);
+   setClockToYMDHMS(y, m, d, hh, mm, ss);
 }
 
 void Carduino::setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss) {

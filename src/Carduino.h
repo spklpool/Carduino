@@ -72,6 +72,13 @@
 #define RESET_CYCLE_THRESHOLD 50
 #define ADVANCE_CYCLE_THRESHOLD 10
 
+#define BEGINING_OF_TIME_HOURS 16
+#define BEGINING_OF_TIME_MINUTES 44
+#define BEGINING_OF_TIME_SECONDS 51
+#define BEGINING_OF_TIME_DAY 7
+#define BEGINING_OF_TIME_MONTH 6
+#define BEGINING_OF_TIME_YEAR 20
+
 class Carduino
 {
   public:
@@ -85,9 +92,12 @@ class Carduino
     void setTimeToNow();
     void checkDateTime();
     void printNow();
+    long getSecondsAtBeginingOfTime();
+    long getSecondsFormYMDHHMMSS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
     long getNowFromClock();
     void resetClockToZero();
     void setClockToSeconds(long timeInSeconds);
+    void setClockToCompilerTime();
     void setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
     void advanceClockByOneDot();
     bool isButtonPressed();
