@@ -42,9 +42,35 @@ Carduino::Carduino() {
   pinMode(latchPin, OUTPUT);
   pinMode(buttonPin, INPUT);
   Wire.begin();
-#ifdef DEBUG
-  Serial.begin(9600);
-#endif
+
+// uncomment to debug on a device that supports it
+//  Serial.begin(9600);
+}
+
+void Carduino::displayHoursAndMinutes() {
+  uint16_t y;
+  uint8_t m, d, hh, mm, ss;
+  
+  getNowFromClock(y,  m, d, hh, mm, ss);
+
+  uint32_t hoursArray[] = { dot2, dot4, dot6, dot8, 
+                            dot10, dot12, dot14, dot16,
+                            dot18, dot20, dot22, dot24 };
+
+  uint32_t minutesArray2[] = { dot1, dot3, dot5, dot7, 
+                               dot9, dot11, dot13, dot15,
+                               dot17, dot19, dot21, dot23 };
+
+  uint32_t minutesArray1[] = { dot25, dot26, dot28, dot30, dot29, dot27 };
+  
+  displayDots(hoursArray[hh%12] & minutesArray1[mm/10] & minutesArray2[mm%10]);
+
+// uncomment to debug on a device that supports it
+//  char dateTimeString[60];
+//  sprintf(dateTimeString, "hh mod 12: %i mm/10: %i mm mod 10: %i", hh%12, mm/10, mm%10);
+//  Serial.println(dateTimeString);
+
+  delay(1000);
 }
 
 void Carduino::runClock() {
@@ -60,14 +86,6 @@ void Carduino::runClock(uint32_t speedMultiplier) {
 }
 
 void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
-  uint32_t middle = dot25 & dot26 & dot28 & dot30 & dot29 & dot27;
-  const int sizeofEpocharray = 7;
-  uint32_t epocharray[sizeofEpocharray] = { dot0, dot25, dot26, dot28, dot30, dot29, dot27 };
-  for (int i=0; i<sizeofEpocharray; i++) {
-    if (i>0) {
-      epocharray[i] = epocharray[i] & epocharray[i-1];
-    }
-  }
   
   const int sizeofClockarray = 30;
   uint32_t clockarray[sizeofClockarray] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
@@ -99,20 +117,33 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
     advanceCycleCount = 0;
   }
 
-//  long nowSeconds = getNowFromClock();
-//  long beginingOfTimeSeconds = getSecondsAtBeginingOfTime();
-//  long secondsElapsed = nowSeconds - beginingOfTimeSeconds;
-  long secondsElapsed = currentTime * speedMultiplier;
-  dotsElapsed = secondsElapsed/SECONDS_IN_DOT;
-  epochsElapsed = dotsElapsed/DOTS_IN_EPOCH;
-  uint32_t currentEpochDots = dotsElapsed%DOTS_IN_EPOCH;
+  unsigned long beginingOfTimeSeconds = getSecondsAtBeginingOfTime();
+  unsigned long nowSeconds = getNowFromClock();
+  unsigned long shelley_seconds = nowSeconds - beginingOfTimeSeconds;
+  unsigned long seconds_in_epoch = 432000; //60*60*5*24
+  unsigned long epoch = (shelley_seconds / seconds_in_epoch) + SHELLY_EPOCH_OFFSET;
+  unsigned long seconds_in_this_epoch = shelley_seconds % seconds_in_epoch;
+  float portion_of_epoch_completed = seconds_in_this_epoch / (float)seconds_in_epoch;
+  int dot = portion_of_epoch_completed * 24;
+  int epochIndex = seconds_in_this_epoch % 6;
 
-  if (middleEpochCounter) {
-    displayDots(clockarray[currentEpochDots] & epocharray[epochsElapsed%sizeofEpocharray]);
-  } else {
-    displayDots(clockarray[currentEpochDots] & middle);
+  // was overflowing dynamics memory space with an array of middle dots
+  // below implementation is uglier than using an array , but it trades
+  // program space (which I have) with dynamic memory space (which I don't have)
+  if (epochIndex == 0) {
+    displayDots(clockarray[dot] & dot25);
+  } else if (epochIndex == 1) {
+    displayDots(clockarray[dot] & dot25 & dot26);
+  } else if (epochIndex == 2) {
+    displayDots(clockarray[dot] & dot25 & dot26 & dot28);
+  } else if (epochIndex == 3) {
+    displayDots(clockarray[dot] & dot25 & dot26 & dot28 & dot30);
+  } else if (epochIndex == 4) {
+    displayDots(clockarray[dot] & dot25 & dot26 & dot28 & dot30 & dot29);
+  } else if (epochIndex == 5) {
+    displayDots(clockarray[dot] & dot25 & dot26 & dot28 & dot30 & dot29 & dot27);
   }
-  delay(100);
+  delay(500);
 }
 
 void Carduino::sequence1() {
@@ -148,7 +179,7 @@ void Carduino::fireworks2() {
   for (int i = 0; i<3; i++) {
     for (int j=0; j<sizeofClockarray; j++) {
       displayDots(clockarray[j]);
-      delay(100);
+      delay(600);
     }
   }
 }
@@ -222,15 +253,19 @@ long Carduino::getNowFromClock() {
   uint16_t y = bcd2bin(Wire.read());
   uint16_t days = date2days(y, m, d);
   long secondsElapsed = time2long(days, hh, mm, ss);
-  
-#ifdef DEBUG
-  char dateTimeString[60];
-  dotsElapsed = secondsElapsed/SECONDS_IN_DOT;
-  epochsElapsed = dotsElapsed/DOTS_IN_EPOCH;
-  uint32_t currentEpochDots = dotsElapsed%DOTS_IN_EPOCH;
-  sprintf(dateTimeString,"%i %i %i: %i %i %i:epochs: %i dots: %i seconds: %i", d, m, y, hh, mm, ss, epochsElapsed, dotsElapsed, secondsElapsed);
-  Serial.println(dateTimeString);
-#endif 
+
+// uncomment to debug on a device that supports it
+//  char dateTimeString[60];
+//  unsigned long beginingOfTimeSeconds = getSecondsAtBeginingOfTime();
+//  unsigned long shelley_seconds = secondsElapsed - beginingOfTimeSeconds;
+//  unsigned long seconds_in_epoch = 432000; //60*60*5*24
+//  unsigned long epoch = (shelley_seconds / seconds_in_epoch) + SHELLY_EPOCH_OFFSET;
+//  unsigned long seconds_in_this_epoch = shelley_seconds % seconds_in_epoch;
+//  float portion_of_epoch_completed = seconds_in_this_epoch / (float)seconds_in_epoch;
+//  int dot = portion_of_epoch_completed * 24;
+//  int epochIndex = seconds_in_this_epoch % 6;
+//  sprintf(dateTimeString,"%i %i %i: %i %i %i:epochs: %i dots: %i", d, m, y, hh, mm, ss, epoch, dot);
+//  Serial.println(dateTimeString);
   
   return secondsElapsed;
 }
@@ -276,23 +311,6 @@ void Carduino::setClockToSeconds(long timeInSeconds) {
   setClockToYMDHMS(y, m, d, hh, mm, ss);
 }
 
-void Carduino::setClockToCompilerTime() {
-  uint8_t y = 0;
-  uint8_t m = 0;
-  uint8_t d = 0;
-  uint8_t hh = 0;
-  uint8_t mm = 0;
-  uint8_t ss = 0;
-  uint8_t yOff = 0;
-   static const char month_names[] = "JanFebMarAprMayJunJulAugSepOctNovDec";
-   static char buff[4] = {'0','0','0','0'};
-   sscanf(__DATE__, "%s %hhu %d", buff, &d, &y);
-   yOff = y >= 2000 ? y - 2000 : y;
-   m = (strstr(month_names, buff) - month_names) / 3 + 1;
-   sscanf(__TIME__, "%hhu:%hhu:%hhu", &hh, &mm, &ss);
-   setClockToYMDHMS(y, m, d, hh, mm, ss);
-}
-
 void Carduino::setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss) {
   Wire.beginTransmission(CLOCK_ADDRESS);
   Wire.write(0x06);            // year
@@ -318,4 +336,35 @@ void Carduino::setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, ui
   Wire.write(0x00);            // second
   Wire.write(decToBcd(ss));
   Wire.endTransmission();
+}
+
+// to set the clock to the current time, add the following to the sketch
+//  carduino.setClock(__DATE__, __TIME__);
+void Carduino::setClock(const char* date, const char* time) {
+  static const char month_names[] = "JanFebMarAprMayJunJulAugSepOctNovDec";
+  static char buff[4] = {'0','0','0','0'};
+  uint16_t y;
+  uint8_t m,d,hh,mm,ss;
+  sscanf(date, "%s %hhu %d", buff, &d, &y);
+  m = (strstr(month_names, buff) - month_names) / 3 + 1;
+  sscanf(time, "%hhu:%hhu:%hhu", &hh, &mm, &ss);
+  char dateTimeString[60];
+  setClockToYMDHMS(y-2000, m, d, hh, mm, ss);
+}
+
+
+// read current date and time from DS3231 clock
+// reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+void Carduino::getNowFromClock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss) {
+  Wire.beginTransmission(CLOCK_ADDRESS);
+  Wire.write(0);
+  Wire.endTransmission();
+  Wire.requestFrom(CLOCK_ADDRESS, 7);
+  ss = bcd2bin(Wire.read() & 0x7F);
+  mm = bcd2bin(Wire.read());
+  hh = bcd2bin(Wire.read());
+  Wire.read();
+  d = bcd2bin(Wire.read());
+  m = bcd2bin(Wire.read());
+  y = bcd2bin(Wire.read());
 }

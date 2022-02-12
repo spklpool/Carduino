@@ -5,11 +5,6 @@
 
 #define CLOCK_ADDRESS 0x68
 
-// Uncomment this to enable debug to the serial monitor.
-// this does not work on the real Carduino controller and
-// it will prevent the lights from working at all.
-//#define DEBUG 1
-
 // These binary values are the secret sauce that makes this code simple.
 // Each bit of the 32 bit entries in the array represents one
 // of the output pins on one of the 4 shift registers.
@@ -73,16 +68,18 @@
 #define ADVANCE_CYCLE_THRESHOLD 10
 
 #define BEGINING_OF_TIME_HOURS 16
-#define BEGINING_OF_TIME_MINUTES 44
-#define BEGINING_OF_TIME_SECONDS 51
-#define BEGINING_OF_TIME_DAY 7
-#define BEGINING_OF_TIME_MONTH 6
+#define BEGINING_OF_TIME_MINUTES 45
+#define BEGINING_OF_TIME_SECONDS 00
+#define BEGINING_OF_TIME_DAY 3
+#define BEGINING_OF_TIME_MONTH 8
 #define BEGINING_OF_TIME_YEAR 20
+#define SHELLY_EPOCH_OFFSET 209;
 
 class Carduino
 {
   public:
     Carduino();
+    void displayHoursAndMinutes();
     void runClock();
     void runClock(bool middleEpochCounter);
     void runClock(uint32_t speedMultiplier);
@@ -95,9 +92,10 @@ class Carduino
     long getSecondsAtBeginingOfTime();
     long getSecondsFormYMDHHMMSS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
     long getNowFromClock();
+    void getNowFromClock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss);
     void resetClockToZero();
+    void setClock(const char* date, const char* time);
     void setClockToSeconds(long timeInSeconds);
-    void setClockToCompilerTime();
     void setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
     void advanceClockByOneDot();
     bool isButtonPressed();
