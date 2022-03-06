@@ -5,10 +5,10 @@ This repository contains the source code for the Carduino library for Arduino ID
 ## Arduino library
 The Arduino IDE can be downloaded here:
 https://www.arduino.cc/en/software
-
+The files that make up the library are under the src folder.
 
 ## PCB design files
-The PCB is designed using Eagle.  It meets the for being edited using the free edition for personal use, which can be downloaded here:
+The PCB is designed using Eagle.  It meets the criteria for being edited using the free edition for personal use, which can be downloaded here:
 https://www.autodesk.ca/en/products/eagle/free-download
 
 
