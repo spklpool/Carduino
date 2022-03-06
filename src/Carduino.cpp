@@ -41,6 +41,7 @@ Carduino::Carduino() {
   pinMode(dataPin, OUTPUT);
   pinMode(latchPin, OUTPUT);
   pinMode(buttonPin, INPUT);
+  pinMode(oePin, OUTPUT);
   Wire.begin();
 
 // uncomment to debug on a device that supports it
@@ -127,7 +128,7 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   int dot = portion_of_epoch_completed * 24;
   int epochIndex = seconds_in_this_epoch % 6;
 
-  // was overflowing dynamics memory space with an array of middle dots
+  // was overflowing dynamic memory space with an array of middle dots
   // below implementation is uglier than using an array , but it trades
   // program space (which I have) with dynamic memory space (which I don't have)
   if (epochIndex == 0) {
@@ -146,6 +147,40 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   delay(500);
 }
 
+void Carduino::teaser() {
+  delay(3000);
+  accelleratingClock();
+  reverseClock();
+  fireworks1();
+  sequence4();
+  fireworks2();
+  fireworks2();
+  sequence2(50);
+  sequence3(50);
+  sequence2(50);
+  full();
+  fadeout();
+}
+
+void Carduino::test1() {
+  const int sizeofClockarray = 30;
+  uint32_t clockarray[sizeofClockarray] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
+                                            dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
+                                            dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24,
+                                            dot25, dot26, dot27, dot28, dot29, dot30 };
+
+  for (int i=0; i<sizeofClockarray; i++) {
+    if (i>0) {
+      clockarray[i] = clockarray[i] & clockarray[i-1];
+    } 
+  }
+                                            
+  for (int i=0; i<sizeofClockarray; i++) {
+    displayDots(clockarray[i]);
+    delay(200);
+  }
+}
+
 void Carduino::sequence1() {
   const int sizeofClockarray = 30;
   uint32_t clockarray[sizeofClockarray] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
@@ -155,6 +190,175 @@ void Carduino::sequence1() {
   for (int i=0; i<sizeofClockarray; i++) {
     displayDots(clockarray[i]);
     delay(300);
+  }
+}
+
+void Carduino::sequence4() {
+  const int sizeofClockarray = 30;
+  uint32_t clockarray[sizeofClockarray] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
+                                            dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
+                                            dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24,
+                                            dot25, dot26, dot27, dot28, dot29, dot30 };
+  for (int i=0; i<sizeofClockarray; i++) {
+    displayDots(clockarray[i]);
+    delay(50);
+  }
+}
+
+void Carduino::accelleratingClock() {
+  const int sizeofClockarray = 25;
+  uint32_t clockarray[sizeofClockarray] = { dot0, dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
+                                            dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
+                                            dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24 };
+  for (int i=0; i<sizeofClockarray; i++) {
+    if (i>0) {
+      clockarray[i] = clockarray[i] & clockarray[i-1];
+    } 
+  }
+
+  displayDots(dot0);
+
+  delay(3000);
+
+  displayDots(dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+
+  delay(2000);
+
+  for (int i=0; i<3; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(2000);
+  }
+
+  for (int i=3; i<8; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(1000);
+  }
+
+  for (int i=8; i<12; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(500);
+  }
+
+  for (int i=12; i<25; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(200);
+  }
+}
+
+void Carduino::accelleratingClock2() {
+  const int sizeofClockarray = 25;
+  uint32_t clockarray[sizeofClockarray] = { dot0, dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
+                                            dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
+                                            dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24 };
+  for (int i=0; i<sizeofClockarray; i++) {
+    if (i>0) {
+      clockarray[i] = clockarray[i] & clockarray[i-1];
+    } 
+  }
+
+  for (int i=0; i<3; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(500);
+  }
+
+  for (int i=3; i<8; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(200);
+  }
+
+  for (int i=8; i<12; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(100);
+  }
+
+  for (int i=12; i<25; i++) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(50);
+  }
+}
+
+void Carduino::reverseClock() {
+  const int sizeofClockarray = 25;
+  uint32_t clockarray[sizeofClockarray] = { dot0, dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
+                                            dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
+                                            dot17, dot18, dot19, dot20, dot21, dot22, dot23, dot24 };
+  for (int i=0; i<sizeofClockarray; i++) {
+    if (i>0) {
+      clockarray[i] = clockarray[i] & clockarray[i-1];
+    } 
+  }
+
+  for (int i=sizeofClockarray-1; i>=0; i--) {
+    displayDots(clockarray[i] & dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+    delay(100);
+  }
+}
+
+void Carduino::full() {
+  displayDots(dot1 & dot2 & dot3 & dot4 & dot5 & dot6 & dot7 & dot8 & 
+              dot9 & dot10 & dot11 & dot12 & dot13 & dot14 & dot15 & dot16 & 
+              dot17 & dot18 & dot19 & dot20 & dot21 & dot22 & dot23 & dot24 &
+              dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+  delay(3000);
+}
+
+void Carduino::fadeout() {
+  const int sizeofClockarray = 3;
+  uint32_t clockarray[sizeofClockarray] = { dot25 & dot26 & dot27 & dot28 & dot29 & dot30,
+                                            dot1 & dot3 & dot5 & dot7 & dot9 & dot11 & dot13 & dot15 & dot17 & dot19 & dot21 & dot23 & dot25 & dot26 & dot27 & dot28 & dot29 & dot30,
+                                            dot1 & dot2 & dot3 & dot4 & dot5 & dot6 & dot7 & dot8 &
+                                            dot9 & dot10 & dot11 & dot12 & dot13 & dot14 & dot15 & dot16 &
+                                            dot17 & dot18 & dot19 & dot20 & dot21 & dot22 & dot23 & dot24 & 
+                                            dot25 & dot26 & dot27 & dot28 & dot29 & dot30 };
+  for (int i=sizeofClockarray-1; i>=0; i--) {
+    displayDots(clockarray[i]);
+    delay(3000);
+  }
+  displayDots(dot0);
+  delay(2000);
+}
+
+void Carduino::sequence2(int limit) {
+  const int sizeOfClockArray = 12;
+  const int sizeOfMiddleArray = 6;
+  uint32_t middlearray[sizeOfClockArray] = { dot25, dot26, dot28, dot30, dot29, dot27 };
+  uint32_t clockarray[sizeOfClockArray] = { dot1 & dot2, dot3 & dot4, dot5 & dot6, dot7 & dot8, dot9 & dot10,
+                                            dot11 & dot12, dot13 & dot14, dot15 & dot16, dot17 & dot18, dot19 & dot20,
+                                            dot21 & dot22, dot23 & dot24 };
+  int masterCounter = 0;
+  int middleCounter = 0;
+  int outerCounter = 0;
+  while (true) {
+    displayDots(clockarray[outerCounter] & middlearray[middleCounter]);
+    middleCounter ++;
+    outerCounter ++;
+    masterCounter ++;
+    if (middleCounter >= sizeOfMiddleArray) middleCounter = 0;
+    if (outerCounter >= sizeOfClockArray) outerCounter = 0;
+    if (masterCounter > limit) break;
+    delay(100);
+  }
+}
+
+void Carduino::sequence3(int limit) {
+  const int sizeOfClockArray = 12;
+  const int sizeOfMiddleArray = 6;
+  uint32_t middlearray[sizeOfClockArray] = { dot25, dot26, dot28, dot30, dot29, dot27 };
+  uint32_t clockarray[sizeOfClockArray] = { dot1 & dot2, dot3 & dot4, dot5 & dot6, dot7 & dot8, dot9 & dot10,
+                                            dot11 & dot12, dot13 & dot14, dot15 & dot16, dot17 & dot18, dot19 & dot20,
+                                            dot21 & dot22, dot23 & dot24 };
+  int masterCounter = 0;
+  int middleCounter = 5;
+  int outerCounter = 11;
+  while (true) {
+    displayDots(clockarray[outerCounter] & middlearray[middleCounter]);
+    middleCounter --;
+    outerCounter --;
+    masterCounter ++;
+    if (middleCounter <= 0) middleCounter = 5;
+    if (outerCounter <= 0) outerCounter = 11;
+    if (masterCounter > limit) break;
+    delay(100);
   }
 }
 

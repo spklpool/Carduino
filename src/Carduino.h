@@ -54,10 +54,11 @@
 #define ALLOFF 0b01111111111111111111111111111111
 #define ALLON  0b00000000000000000000000000000000
 
+#define oePin 0
 #define clockPin 1
+#define buttonPin 3
 #define dataPin 4
 #define latchPin 5
-#define buttonPin 3
 
 #define CARDUINO_LED_COUNT 32
 #define HOURS_TO_SECONDS_MULTIPLIER 3600
@@ -84,6 +85,7 @@ class Carduino
     void runClock(bool middleEpochCounter);
     void runClock(uint32_t speedMultiplier);
     void runClock(uint32_t speedMultiplier, bool middleEpochCounter);
+    void teaser();
     void inwardSpiral();
     void displayDots(uint32_t data);
     void setTimeToNow();
@@ -99,10 +101,19 @@ class Carduino
     void setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
     void advanceClockByOneDot();
     bool isButtonPressed();
+    void full();
+    void fadeout();
     void fireworks1();
     void fireworks2();
     void sequence1();
-    
+    void sequence2(int limit);
+    void sequence3(int limit);
+    void sequence4();
+    void accelleratingClock();
+    void accelleratingClock2();
+    void reverseClock();
+    void test1();
+        
   private:
     byte decToBcd(byte val);
     byte bcdToDec(byte val);
