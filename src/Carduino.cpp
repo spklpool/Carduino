@@ -48,6 +48,11 @@ Carduino::Carduino() {
 //  Serial.begin(9600);
 }
 
+void Carduino::setBrightness(byte brightness) // 0 to 255
+{
+  analogWrite(oePin, 255-brightness);
+}
+
 void Carduino::displayHoursAndMinutes() {
   uint16_t y;
   uint8_t m, d, hh, mm, ss;
@@ -300,6 +305,26 @@ void Carduino::full() {
               dot17 & dot18 & dot19 & dot20 & dot21 & dot22 & dot23 & dot24 &
               dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
   delay(3000);
+}
+
+void Carduino::heartbeat() {
+  setBrightness(0);
+  displayDots(dot1 & dot2 & dot3 & dot4 & dot5 & dot6 & dot7 & dot8 & 
+              dot9 & dot10 & dot11 & dot12 & dot13 & dot14 & dot15 & dot16 & 
+              dot17 & dot18 & dot19 & dot20 & dot21 & dot22 & dot23 & dot24 &
+              dot25 & dot26 & dot27 & dot28 & dot29 & dot30);
+  for (byte b = 0; b < 255; b++)
+  {
+    setBrightness(b);
+    delay(5);
+  }
+  for (byte b = 255; b > 0; b--)
+  {
+    setBrightness(b);
+    delay(5);
+  }
+  setBrightness(0);
+  delay(500);
 }
 
 void Carduino::fadeout() {

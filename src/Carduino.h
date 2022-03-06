@@ -80,6 +80,7 @@ class Carduino
 {
   public:
     Carduino();
+    void setBrightness(byte brightness);
     void displayHoursAndMinutes();
     void runClock();
     void runClock(bool middleEpochCounter);
@@ -102,6 +103,7 @@ class Carduino
     void advanceClockByOneDot();
     bool isButtonPressed();
     void full();
+    void heartbeat();
     void fadeout();
     void fireworks1();
     void fireworks2();
