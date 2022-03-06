@@ -1,6 +1,6 @@
 # Carduino
 
-This repository contains the source code for the Carduino library for Arduino IDE as well as design files for the electronics and the 3d printed enclosure for the Carduino device.  Each of these 3 components will be desctibed separately below.
+This repository contains the source code for the Carduino library for Arduino IDE as well as design files for the electronics and the 3d printed enclosure for the Carduino device.  Each of these 3 components will be desctibed separately below.  More information about Carduino can be found at https://carduino.co
 
 ## Arduino library
 The Arduino IDE can be downloaded here:
