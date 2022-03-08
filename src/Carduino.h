@@ -60,6 +60,7 @@
 #define dataPin 4
 #define latchPin 5
 
+#define DAYS_IN_YEAR 365
 #define CARDUINO_LED_COUNT 32
 #define HOURS_TO_SECONDS_MULTIPLIER 3600
 #define SECONDS_IN_DOT 18000 // 60*60*5;

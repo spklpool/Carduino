@@ -7,7 +7,6 @@
 // precision number of seconds since a given start time to calculate
 // epochs and fractions thereof.
 static uint8_t bcd2bin (uint8_t val) { return val - 6 * (val >> 4); }
-static uint8_t bin2bcd (uint8_t val) { return val + 6 * (val / 10); }
 static const uint8_t daysInMonth [] PROGMEM = { 31,28,31,30,31,30,31,31,30,31,30,31 };
 bool isleapYear(const uint8_t y) {
   if(y&3)//check if divisible by 4
@@ -23,7 +22,7 @@ static uint16_t date2days(uint16_t y, uint8_t m, uint8_t d) {
         days += pgm_read_byte(daysInMonth + i - 1);
     if (m > 2 && isleapYear(y))
         ++days;
-    return days + 365 * y + (y + 3) / 4 - 1;
+    return days + DAYS_IN_YEAR * y + (y + 3) / 4 - 1;
 }
 static long time2long(uint16_t days, uint8_t h, uint8_t m, uint8_t s) {
     return ((days * 24L + h) * 60 + m) * 60 + s;
@@ -104,30 +103,10 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
     } 
   }
   
-  long currentTime = getNowFromClock();
-  int buttonState = digitalRead(buttonPin);
-  if (buttonState == HIGH) {
-    if (resetCycleCount > RESET_CYCLE_THRESHOLD) {
-      fireworks2();
-      resetClockToZero();
-    } else if (advanceCycleCount > ADVANCE_CYCLE_THRESHOLD) {
-      advanceClockByOneDot();
-      advanceCycleCount = 0;
-      resetCycleCount ++;
-    } else {
-      resetCycleCount ++;
-      advanceCycleCount ++;
-    }
-  } else {
-    resetCycleCount = 0;
-    advanceCycleCount = 0;
-  }
-
   unsigned long beginingOfTimeSeconds = getSecondsAtBeginingOfTime();
   unsigned long nowSeconds = getNowFromClock();
   unsigned long shelley_seconds = nowSeconds - beginingOfTimeSeconds;
   unsigned long seconds_in_epoch = 432000; //60*60*5*24
-  unsigned long epoch = (shelley_seconds / seconds_in_epoch) + SHELLY_EPOCH_OFFSET;
   unsigned long seconds_in_this_epoch = shelley_seconds % seconds_in_epoch;
   float portion_of_epoch_completed = seconds_in_this_epoch / (float)seconds_in_epoch;
   int dot = portion_of_epoch_completed * 24;
@@ -367,7 +346,6 @@ void Carduino::sequence2(int limit) {
 
 void Carduino::sequence3(int limit) {
   const int sizeOfClockArray = 12;
-  const int sizeOfMiddleArray = 6;
   uint32_t middlearray[sizeOfClockArray] = { dot25, dot26, dot28, dot30, dot29, dot27 };
   uint32_t clockarray[sizeOfClockArray] = { dot1 & dot2, dot3 & dot4, dot5 & dot6, dot7 & dot8, dot9 & dot10,
                                             dot11 & dot12, dot13 & dot14, dot15 & dot16, dot17 & dot18, dot19 & dot20,
@@ -522,9 +500,9 @@ void Carduino::setClockToSeconds(long timeInSeconds) {
   uint8_t leap;
   for (uint8_t yOff = 0; ; ++yOff) {
     leap = isleapYear(yOff);
-    if (days < 365 + leap)
+    if (days < (uint16_t)(DAYS_IN_YEAR + leap))
       break;
-    days -= 365 + leap;
+    days -= DAYS_IN_YEAR + leap;
   }
   for (m = 1; ; ++m) {
     uint8_t daysPerMonth = pgm_read_byte(daysInMonth + m - 1);
@@ -535,8 +513,8 @@ void Carduino::setClockToSeconds(long timeInSeconds) {
     days -= daysPerMonth;
   }
   uint8_t d = days + 1;
-  uint8_t y = days / 365;
-  d = d % 365;
+  uint8_t y = days / DAYS_IN_YEAR;
+  d = d % DAYS_IN_YEAR;
   setClockToYMDHMS(y, m, d, hh, mm, ss);
 }
 
@@ -577,7 +555,6 @@ void Carduino::setClock(const char* date, const char* time) {
   sscanf(date, "%s %hhu %d", buff, &d, &y);
   m = (strstr(month_names, buff) - month_names) / 3 + 1;
   sscanf(time, "%hhu:%hhu:%hhu", &hh, &mm, &ss);
-  char dateTimeString[60];
   setClockToYMDHMS(y-2000, m, d, hh, mm, ss);
 }
 
