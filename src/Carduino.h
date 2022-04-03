@@ -3,7 +3,9 @@
 
 #include <Wire.h>
 
-#define CLOCK_ADDRESS 0x68
+#define DS3231_ADDR                 0x68
+#define RV3028_ADDR                 0x52
+
 
 // These binary values are the secret sauce that makes this code simple.
 // Each bit of the 32 bit entries in the array represents one
@@ -81,6 +83,9 @@ class Carduino
 {
   public:
     Carduino();
+    void init();
+    bool isDS3231Clock();
+    bool isRV3028Clock();
     void setBrightness(byte brightness);
     void displayHoursAndMinutes();
     void runClock();
@@ -99,7 +104,7 @@ class Carduino
     void getNowFromClock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss);
     void resetClockToZero();
     void setClock(const char* date, const char* time);
-    void setClockToSeconds(long timeInSeconds);
+    void setClockToSeconds(long timeInSeconds);    
     void setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
     void advanceClockByOneDot();
     bool isButtonPressed();
@@ -115,9 +120,12 @@ class Carduino
     void accelleratingClock();
     void accelleratingClock2();
     void reverseClock();
-    void test1();
-        
+    void configuringConfirmationDisplay();
+    bool isRV3028Configured();
+    void RV3028Configure();
+    
   private:
+    
     byte decToBcd(byte val);
     byte bcdToDec(byte val);
     uint32_t dotsElapsed = 0;
@@ -126,6 +134,20 @@ class Carduino
     uint8_t resetCycleCount = 0;
     uint8_t advanceCycleCount = 0;
     bool buttonPressed = false;
+    void setRV3028ToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
+    void setDS3231ToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss);
+    long getNowFromDS3231();
+    void getNowFromDS3231Clock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss);
+    long getNowFromRV3028();
+    void getNowFromRV3028Clock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss);
+    void printDateTimeToSerial(uint8_t ss, uint8_t mm, uint8_t hh, uint8_t d, uint8_t m, uint16_t y);
+    void Carduino::RV3028waitForNotBusy();
+    uint8_t RV3028readRegister(uint8_t addr);
+    uint8_t RV3028readConfigEEPROM(uint8_t eepromaddr);
+    void RV3028writeConfigEEPROM(uint8_t eepromaddr, uint8_t val);
+    void RV3028disableAutoRefresh();
+    void RV3028enableAutoRefresh();
+    void RV3028writeToEEPROM();
 };
 
 
