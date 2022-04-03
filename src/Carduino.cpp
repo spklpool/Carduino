@@ -35,6 +35,7 @@ byte Carduino::bcdToDec(byte val) {
 }
 // end of copied functions
 
+
 Carduino::Carduino() {
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
@@ -42,9 +43,15 @@ Carduino::Carduino() {
   pinMode(buttonPin, INPUT);
   pinMode(oePin, OUTPUT);
   Wire.begin();
+}
 
-// uncomment to debug on a device that supports it
-//  Serial.begin(9600);
+void Carduino::init() {
+  if (isRV3028Clock()) {
+    if (!isRV3028Configured()) {
+      RV3028Configure();
+      configuringConfirmationDisplay();
+    }
+  }
 }
 
 void Carduino::setBrightness(byte brightness) // 0 to 255
@@ -128,7 +135,7 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   } else if (epochIndex == 5) {
     displayDots(clockarray[dot] & dot25 & dot26 & dot28 & dot30 & dot29 & dot27);
   }
-  delay(500);
+  delay(100);
 }
 
 void Carduino::teaser() {
@@ -146,7 +153,7 @@ void Carduino::teaser() {
   fadeout();
 }
 
-void Carduino::test1() {
+void Carduino::configuringConfirmationDisplay() {
   const int sizeofClockarray = 30;
   uint32_t clockarray[sizeofClockarray] = { dot1, dot2, dot3, dot4, dot5, dot6, dot7, dot8,
                                             dot9, dot10, dot11, dot12, dot13, dot14, dot15, dot16,
@@ -444,13 +451,32 @@ long Carduino::getSecondsFormYMDHHMMSS(uint16_t y, uint8_t m, uint8_t d, uint8_t
   return time2long(days, hh, mm, ss);
 }
 
+bool Carduino::isDS3231Clock() {
+  Wire.beginTransmission(DS3231_ADDR);
+  return (Wire.endTransmission() == 0);
+}
+
+bool Carduino::isRV3028Clock() {
+  Wire.beginTransmission(RV3028_ADDR);
+  return (Wire.endTransmission() == 0);
+}
+
+long Carduino::getNowFromClock() {
+  if (isDS3231Clock()) {
+    return getNowFromDS3231();
+  } else if (isRV3028Clock()) {
+    return getNowFromRV3028();
+  }
+  return 0;
+}
+
 // read current date and time from DS3231 clock
 // reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
-long Carduino::getNowFromClock() {
-  Wire.beginTransmission(CLOCK_ADDRESS);
+long Carduino::getNowFromDS3231() {
+  Wire.beginTransmission(DS3231_ADDR);
   Wire.write(0);
   Wire.endTransmission();
-  Wire.requestFrom(CLOCK_ADDRESS, 7);
+  Wire.requestFrom(DS3231_ADDR, 7);
   uint8_t ss = bcd2bin(Wire.read() & 0x7F);
   uint8_t mm = bcd2bin(Wire.read());
   uint8_t hh = bcd2bin(Wire.read());
@@ -461,7 +487,35 @@ long Carduino::getNowFromClock() {
   uint16_t days = date2days(y, m, d);
   long secondsElapsed = time2long(days, hh, mm, ss);
 
-// uncomment to debug on a device that supports it
+  printDateTimeToSerial(ss, mm, hh, y, m, d);
+  
+  return secondsElapsed;
+}
+
+// read current date and time from DS3231 clock
+// reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
+long Carduino::getNowFromRV3028() {
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0);
+  Wire.endTransmission();
+  Wire.requestFrom(RV3028_ADDR, 7);
+  uint8_t ss = bcd2bin(Wire.read());
+  uint8_t mm = bcd2bin(Wire.read());
+  uint8_t hh = bcd2bin(Wire.read());
+  Wire.read();
+  uint8_t d = bcd2bin(Wire.read());
+  uint8_t m = bcd2bin(Wire.read());
+  uint16_t y = bcd2bin(Wire.read());
+  uint16_t days = date2days(y, m, d);
+  long secondsElapsed = time2long(days, hh, mm, ss);
+
+  printDateTimeToSerial(ss, mm, hh, y, m, d);
+  
+  return secondsElapsed;
+}
+
+void Carduino::printDateTimeToSerial(uint8_t ss, uint8_t mm, uint8_t hh, uint8_t d, uint8_t m, uint16_t y) {
+  // uncomment to debug on a device that supports it
 //  char dateTimeString[60];
 //  unsigned long beginingOfTimeSeconds = getSecondsAtBeginingOfTime();
 //  unsigned long shelley_seconds = secondsElapsed - beginingOfTimeSeconds;
@@ -473,8 +527,6 @@ long Carduino::getNowFromClock() {
 //  int epochIndex = seconds_in_this_epoch % 6;
 //  sprintf(dateTimeString,"%i %i %i: %i %i %i:epochs: %i dots: %i", d, m, y, hh, mm, ss, epoch, dot);
 //  Serial.println(dateTimeString);
-  
-  return secondsElapsed;
 }
 
 // reset DS3231 clock to 00:00:00 Jan 1st, 2000
@@ -519,27 +571,62 @@ void Carduino::setClockToSeconds(long timeInSeconds) {
 }
 
 void Carduino::setClockToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss) {
-  Wire.beginTransmission(CLOCK_ADDRESS);
+  if (isDS3231Clock()) {
+    setDS3231ToYMDHMS(y, m, d, hh-1, mm, ss);
+  } else if (isRV3028Clock()) {
+    setRV3028ToYMDHMS(y, m, d, hh-1, mm, ss);
+  }
+}
+
+void Carduino::setDS3231ToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss) {
+  Wire.beginTransmission(DS3231_ADDR);
   Wire.write(0x06);            // year
   Wire.write(decToBcd(y));
   Wire.endTransmission();
-  Wire.beginTransmission(CLOCK_ADDRESS);
+  Wire.beginTransmission(DS3231_ADDR);
   Wire.write(0x05);            // month
   Wire.write(decToBcd(m));
   Wire.endTransmission();
-  Wire.beginTransmission(CLOCK_ADDRESS);
+  Wire.beginTransmission(DS3231_ADDR);
   Wire.write(0x04);            // day
   Wire.write(decToBcd(d));
   Wire.endTransmission();
-  Wire.beginTransmission(CLOCK_ADDRESS);
+  Wire.beginTransmission(DS3231_ADDR);
   Wire.write(0x02);            // hour
   Wire.write(decToBcd(hh) & 0b10111111);
   Wire.endTransmission();
-  Wire.beginTransmission(CLOCK_ADDRESS);
+  Wire.beginTransmission(DS3231_ADDR);
   Wire.write(0x01);            // minute
   Wire.write(decToBcd(mm));
   Wire.endTransmission();
-  Wire.beginTransmission(CLOCK_ADDRESS);
+  Wire.beginTransmission(DS3231_ADDR);
+  Wire.write(0x00);            // second
+  Wire.write(decToBcd(ss));
+  Wire.endTransmission();
+}
+
+void Carduino::setRV3028ToYMDHMS(uint16_t y, uint8_t m, uint8_t d, uint8_t hh, uint8_t mm, uint8_t ss) {
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x06);            // year
+  Wire.write(decToBcd(y));
+  Wire.endTransmission();
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x05);            // month
+  Wire.write(decToBcd(m));
+  Wire.endTransmission();
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x04);            // day
+  Wire.write(decToBcd(d));
+  Wire.endTransmission();
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x02);            // hour
+  Wire.write(decToBcd(hh) & 0b10111111);
+  Wire.endTransmission();
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x01);            // minute
+  Wire.write(decToBcd(mm));
+  Wire.endTransmission();
+  Wire.beginTransmission(RV3028_ADDR);
   Wire.write(0x00);            // second
   Wire.write(decToBcd(ss));
   Wire.endTransmission();
@@ -562,10 +649,18 @@ void Carduino::setClock(const char* date, const char* time) {
 // read current date and time from DS3231 clock
 // reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
 void Carduino::getNowFromClock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss) {
-  Wire.beginTransmission(CLOCK_ADDRESS);
+  if (isDS3231Clock()) {
+    getNowFromDS3231Clock(y, m, d, hh, mm, ss);
+  } else if (isRV3028Clock()) {
+    getNowFromRV3028Clock(y, m, d, hh, mm, ss);
+  }
+}
+
+void Carduino::getNowFromDS3231Clock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss) {
+  Wire.beginTransmission(DS3231_ADDR);
   Wire.write(0);
   Wire.endTransmission();
-  Wire.requestFrom(CLOCK_ADDRESS, 7);
+  Wire.requestFrom(DS3231_ADDR, 7);
   ss = bcd2bin(Wire.read() & 0x7F);
   mm = bcd2bin(Wire.read());
   hh = bcd2bin(Wire.read());
@@ -573,4 +668,144 @@ void Carduino::getNowFromClock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh,
   d = bcd2bin(Wire.read());
   m = bcd2bin(Wire.read());
   y = bcd2bin(Wire.read());
+}
+
+void Carduino::getNowFromRV3028Clock(uint16_t &y, uint8_t &m, uint8_t &d, uint8_t &hh, uint8_t &mm, uint8_t &ss) {
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0);
+  Wire.endTransmission();
+  Wire.requestFrom(RV3028_ADDR, 7);
+  ss = bcd2bin(Wire.read());
+  mm = bcd2bin(Wire.read());
+  hh = bcd2bin(Wire.read());
+  Wire.read();
+  d = bcd2bin(Wire.read());
+  m = bcd2bin(Wire.read());
+  y = bcd2bin(Wire.read());
+}
+
+bool Carduino::isRV3028Configured() {
+  uint8_t eeprom_backup_value = RV3028readConfigEEPROM(0x37);
+  if (bitRead(eeprom_backup_value, 0) != 0) return false; //TCR  bits 1:0
+  if (bitRead(eeprom_backup_value, 1) != 0) return false; //TCR  00 TCR 3 kΩ – Default value on delivery
+  if (bitRead(eeprom_backup_value, 2) != 1) return false; //BSM  bits 3:2
+  if (bitRead(eeprom_backup_value, 3) != 0) return false; //BSM  01 Enables the Direct Switching Mode (DSM) - Switchover when VDD < VBACKUP
+  if (bitRead(eeprom_backup_value, 4) != 1) return false; //FEDE 1 Default value on delivery
+  if (bitRead(eeprom_backup_value, 5) != 0) return false; //TCE  0 Disabled – Default value on delivery
+  if (bitRead(eeprom_backup_value, 6) != 0) return false; //BSIE 0 Default value on delivery
+  return true;
+}
+
+void Carduino::RV3028Configure() {
+  // The RV3028 RTC defaults to backup power disabled.  We want it enabled to avoid losing
+  // the correct time.  Below switches backup power mode to direct switching mode
+  // https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-3028-C7_App-Manual.pdf
+  // section 3.15.6
+  // Do not change bit 7 as it is part of the offset register that is factory calibrated.
+  uint8_t eeprom_backup_value = RV3028readConfigEEPROM(0x37);
+  bitClear(eeprom_backup_value, 0);
+  bitClear(eeprom_backup_value, 1);
+  bitSet(eeprom_backup_value, 2);
+  bitClear(eeprom_backup_value, 3);
+  bitSet(eeprom_backup_value, 4);
+  bitClear(eeprom_backup_value, 5);
+  bitClear(eeprom_backup_value, 6);
+  RV3028writeConfigEEPROM(0x37, eeprom_backup_value);
+}
+
+void Carduino::RV3028waitForNotBusy() {
+  while (bitRead(RV3028readRegister(0x0E), 7) != 0);
+}
+
+uint8_t Carduino::RV3028readConfigEEPROM(uint8_t eepromaddr)
+{
+  RV3028waitForNotBusy();
+
+  RV3028disableAutoRefresh();
+  
+  //Read EEPROM Register
+  //https://www.microcrystal.com/fileadmin/Media/Products/RTC/App.Manual/RV-3028-C7_App-Manual.pdf
+  //3.13.EEPROM MEMORY CONTROL REGISTERS
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x25);
+  Wire.write(eepromaddr);
+  Wire.endTransmission();
+  
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x27);  
+  Wire.write(0x00);
+  Wire.endTransmission();
+  
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x27);
+  Wire.write(0x22);
+  Wire.endTransmission();
+  
+  RV3028waitForNotBusy();
+  
+  uint8_t eepromdata = RV3028readRegister(0x26);
+  
+  RV3028waitForNotBusy();
+  
+  RV3028enableAutoRefresh();
+
+  return eepromdata;
+}
+
+void Carduino::RV3028writeConfigEEPROM(uint8_t eepromaddr, uint8_t val)
+{
+  RV3028waitForNotBusy();
+  RV3028disableAutoRefresh();
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(eepromaddr);
+  Wire.write(val);
+  Wire.endTransmission();
+  RV3028writeToEEPROM();
+  RV3028waitForNotBusy();
+  RV3028disableAutoRefresh();
+  RV3028waitForNotBusy();
+}
+
+void Carduino::RV3028enableAutoRefresh() {
+  uint8_t ctrl1_read_value = RV3028readRegister(0x0F);
+  bitSet(ctrl1_read_value, 3);
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x0F);
+  Wire.write(ctrl1_read_value);
+  Wire.endTransmission();
+}
+
+void Carduino::RV3028disableAutoRefresh() {
+  uint8_t ctrl1_read_value = RV3028readRegister(0x0F);
+  bitClear(ctrl1_read_value, 3);
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x0F);
+  Wire.write(ctrl1_read_value);
+  Wire.endTransmission();
+}
+
+uint8_t Carduino::RV3028readRegister(uint8_t addr)
+{
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(addr);
+  Wire.endTransmission();
+
+  Wire.requestFrom(RV3028_ADDR, (uint8_t)1);
+  if (Wire.available()) {
+    return Wire.read();
+  }
+  else {
+    return (0xFF);
+  }
+}
+
+void Carduino::RV3028writeToEEPROM() {
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x27);
+  Wire.write(0x00);
+  Wire.endTransmission();
+  Wire.beginTransmission(RV3028_ADDR);
+  Wire.write(0x27);
+  Wire.write(0x11);
+  Wire.endTransmission();
 }
