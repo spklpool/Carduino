@@ -6883,42 +6883,6 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="-1.6" y1="-4.325" x2="-1.6" y2="4.325" width="0.2" layer="21"/>
 <wire x1="-3.45" y1="4.485" x2="-1.95" y2="4.485" width="0.2" layer="21"/>
 </package>
-<package name="SOIC127P1032X265-16N">
-<description>&lt;b&gt;16 SO&lt;/b&gt;&lt;br&gt;
-</description>
-<smd name="1" x="-4.712" y="4.445" dx="1.925" dy="0.65" layer="1"/>
-<smd name="2" x="-4.712" y="3.175" dx="1.925" dy="0.65" layer="1"/>
-<smd name="3" x="-4.712" y="1.905" dx="1.925" dy="0.65" layer="1"/>
-<smd name="4" x="-4.712" y="0.635" dx="1.925" dy="0.65" layer="1"/>
-<smd name="5" x="-4.712" y="-0.635" dx="1.925" dy="0.65" layer="1"/>
-<smd name="6" x="-4.712" y="-1.905" dx="1.925" dy="0.65" layer="1"/>
-<smd name="7" x="-4.712" y="-3.175" dx="1.925" dy="0.65" layer="1"/>
-<smd name="8" x="-4.712" y="-4.445" dx="1.925" dy="0.65" layer="1"/>
-<smd name="9" x="4.712" y="-4.445" dx="1.925" dy="0.65" layer="1"/>
-<smd name="10" x="4.712" y="-3.175" dx="1.925" dy="0.65" layer="1"/>
-<smd name="11" x="4.712" y="-1.905" dx="1.925" dy="0.65" layer="1"/>
-<smd name="12" x="4.712" y="-0.635" dx="1.925" dy="0.65" layer="1"/>
-<smd name="13" x="4.712" y="0.635" dx="1.925" dy="0.65" layer="1"/>
-<smd name="14" x="4.712" y="1.905" dx="1.925" dy="0.65" layer="1"/>
-<smd name="15" x="4.712" y="3.175" dx="1.925" dy="0.65" layer="1"/>
-<smd name="16" x="4.712" y="4.445" dx="1.925" dy="0.65" layer="1"/>
-<text x="0" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
-<text x="0" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
-<wire x1="-5.925" y1="5.5" x2="5.925" y2="5.5" width="0.05" layer="51"/>
-<wire x1="5.925" y1="5.5" x2="5.925" y2="-5.5" width="0.05" layer="51"/>
-<wire x1="5.925" y1="-5.5" x2="-5.925" y2="-5.5" width="0.05" layer="51"/>
-<wire x1="-5.925" y1="-5.5" x2="-5.925" y2="5.5" width="0.05" layer="51"/>
-<wire x1="-3.75" y1="5.15" x2="3.75" y2="5.15" width="0.1" layer="51"/>
-<wire x1="3.75" y1="5.15" x2="3.75" y2="-5.15" width="0.1" layer="51"/>
-<wire x1="3.75" y1="-5.15" x2="-3.75" y2="-5.15" width="0.1" layer="51"/>
-<wire x1="-3.75" y1="-5.15" x2="-3.75" y2="5.15" width="0.1" layer="51"/>
-<wire x1="-3.75" y1="3.88" x2="-2.48" y2="5.15" width="0.1" layer="51"/>
-<wire x1="-3.4" y1="5.15" x2="3.4" y2="5.15" width="0.2" layer="21"/>
-<wire x1="3.4" y1="5.15" x2="3.4" y2="-5.15" width="0.2" layer="21"/>
-<wire x1="3.4" y1="-5.15" x2="-3.4" y2="-5.15" width="0.2" layer="21"/>
-<wire x1="-3.4" y1="-5.15" x2="-3.4" y2="5.15" width="0.2" layer="21"/>
-<wire x1="-5.675" y1="5.12" x2="-3.75" y2="5.12" width="0.2" layer="21"/>
-</package>
 <package name="BATHLD012SMT">
 <description>&lt;b&gt;BAT-HLD-012-SMT&lt;/b&gt;&lt;br&gt;
 </description>
@@ -6985,6 +6949,32 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="-0.2" y1="-1.45" x2="-0.2" y2="1.45" width="0.2" layer="21"/>
 <wire x1="-1.95" y1="1.5" x2="-0.55" y2="1.5" width="0.2" layer="21"/>
 </package>
+<package name="RV3028C732768KHZ1PPMTAQC">
+<description>&lt;b&gt;RV-3028-C7&lt;/b&gt;&lt;br&gt;
+</description>
+<smd name="1" x="-1.35" y="-0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="2" x="-0.45" y="-0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="3" x="0.45" y="-0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="4" x="1.35" y="-0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="5" x="1.35" y="0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="6" x="0.45" y="0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="7" x="-0.45" y="0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<smd name="8" x="-1.35" y="0.6" dx="0.8" dy="0.5" layer="1" rot="R90"/>
+<text x="0" y="-0.125" size="1.27" layer="25" align="center">&gt;NAME</text>
+<text x="0" y="-0.125" size="1.27" layer="27" align="center">&gt;VALUE</text>
+<wire x1="-1.6" y1="0.75" x2="1.6" y2="0.75" width="0.2" layer="51"/>
+<wire x1="1.6" y1="0.75" x2="1.6" y2="-0.75" width="0.2" layer="51"/>
+<wire x1="1.6" y1="-0.75" x2="-1.6" y2="-0.75" width="0.2" layer="51"/>
+<wire x1="-1.6" y1="-0.75" x2="-1.6" y2="0.75" width="0.2" layer="51"/>
+<wire x1="-1.9" y1="1.3" x2="1.9" y2="1.3" width="0.1" layer="51"/>
+<wire x1="1.9" y1="1.3" x2="1.9" y2="-1.55" width="0.1" layer="51"/>
+<wire x1="1.9" y1="-1.55" x2="-1.9" y2="-1.55" width="0.1" layer="51"/>
+<wire x1="-1.9" y1="-1.55" x2="-1.9" y2="1.3" width="0.1" layer="51"/>
+<wire x1="-1.4" y1="-1.2" x2="-1.4" y2="-1.2" width="0.1" layer="21"/>
+<wire x1="-1.4" y1="-1.2" x2="-1.3" y2="-1.2" width="0.1" layer="21" curve="180"/>
+<wire x1="-1.3" y1="-1.2" x2="-1.3" y2="-1.2" width="0.1" layer="21"/>
+<wire x1="-1.3" y1="-1.2" x2="-1.4" y2="-1.2" width="0.1" layer="21" curve="180"/>
+</package>
 </packages>
 <symbols>
 <symbol name="SN74HCS596DR">
@@ -7033,30 +7023,6 @@ Source: AVX .. aphvc.pdf</description>
 <pin name="PB0" x="40.64" y="-12.7" length="middle" rot="R180"/>
 <pin name="PB1" x="40.64" y="-15.24" length="middle" rot="R180"/>
 </symbol>
-<symbol name="DS3231M+TRL">
-<wire x1="5.08" y1="2.54" x2="30.48" y2="2.54" width="0.254" layer="94"/>
-<wire x1="30.48" y1="-20.32" x2="30.48" y2="2.54" width="0.254" layer="94"/>
-<wire x1="30.48" y1="-20.32" x2="5.08" y2="-20.32" width="0.254" layer="94"/>
-<wire x1="5.08" y1="2.54" x2="5.08" y2="-20.32" width="0.254" layer="94"/>
-<text x="31.75" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
-<text x="31.75" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
-<pin name="32KHZ" x="0" y="0" length="middle"/>
-<pin name="VCC" x="0" y="-2.54" length="middle"/>
-<pin name="!INT!/SQW" x="0" y="-5.08" length="middle"/>
-<pin name="!RST" x="0" y="-7.62" length="middle"/>
-<pin name="N.C._1" x="0" y="-10.16" length="middle"/>
-<pin name="N.C._2" x="0" y="-12.7" length="middle"/>
-<pin name="N.C._3" x="0" y="-15.24" length="middle"/>
-<pin name="N.C._4" x="0" y="-17.78" length="middle"/>
-<pin name="SCL" x="35.56" y="0" length="middle" rot="R180"/>
-<pin name="SDA" x="35.56" y="-2.54" length="middle" rot="R180"/>
-<pin name="VBAT" x="35.56" y="-5.08" length="middle" rot="R180"/>
-<pin name="GND" x="35.56" y="-7.62" length="middle" rot="R180"/>
-<pin name="N.C._8" x="35.56" y="-10.16" length="middle" rot="R180"/>
-<pin name="N.C._7" x="35.56" y="-12.7" length="middle" rot="R180"/>
-<pin name="N.C._6" x="35.56" y="-15.24" length="middle" rot="R180"/>
-<pin name="N.C._5" x="35.56" y="-17.78" length="middle" rot="R180"/>
-</symbol>
 <symbol name="BAT-HLD-012-SMT">
 <wire x1="5.08" y1="2.54" x2="15.24" y2="2.54" width="0.254" layer="94"/>
 <wire x1="15.24" y1="-5.08" x2="15.24" y2="2.54" width="0.254" layer="94"/>
@@ -7095,6 +7061,22 @@ Source: AVX .. aphvc.pdf</description>
 <pin name="VBAT" x="0" y="-5.08" length="middle"/>
 <pin name="VDD" x="27.94" y="0" length="middle" rot="R180"/>
 <pin name="PROG" x="27.94" y="-2.54" length="middle" rot="R180"/>
+</symbol>
+<symbol name="RV-3028-C7_32.768KHZ_1PPM_TA_Q">
+<wire x1="5.08" y1="2.54" x2="30.48" y2="2.54" width="0.254" layer="94"/>
+<wire x1="30.48" y1="-10.16" x2="30.48" y2="2.54" width="0.254" layer="94"/>
+<wire x1="30.48" y1="-10.16" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="5.08" y1="2.54" x2="5.08" y2="-10.16" width="0.254" layer="94"/>
+<text x="31.75" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
+<text x="31.75" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
+<pin name="CLKOUT" x="0" y="0" length="middle"/>
+<pin name="~INT" x="0" y="-2.54" length="middle"/>
+<pin name="SCL" x="0" y="-5.08" length="middle"/>
+<pin name="SDA" x="0" y="-7.62" length="middle"/>
+<pin name="VSS" x="35.56" y="-7.62" length="middle" rot="R180"/>
+<pin name="VBACKUP" x="35.56" y="-5.08" length="middle" rot="R180"/>
+<pin name="VDD" x="35.56" y="-2.54" length="middle" rot="R180"/>
+<pin name="EVI" x="35.56" y="0" length="middle" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -7169,45 +7151,6 @@ Source: &lt;a href="https://datasheet.datasheetarchive.com/originals/distributor
 <attribute name="MANUFACTURER_PART_NUMBER" value="ATTINY404-SSNR" constant="no"/>
 <attribute name="MOUSER_PART_NUMBER" value="556-ATTINY404-SSNR" constant="no"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Microchip-Technology-Atmel/ATTINY404-SSNR?qs=F5EMLAvA7IAEqD7Aw0z%252B9Q%3D%3D" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-<deviceset name="DS3231M+TRL" prefix="IC">
-<description>&lt;b&gt;+/-5ppm, I2C Real-Time Clock&lt;/b&gt;&lt;p&gt;
-Source: &lt;a href="http://componentsearchengine.com/Datasheets/1/DS3231M TRL.pdf"&gt; Datasheet &lt;/a&gt;</description>
-<gates>
-<gate name="G$1" symbol="DS3231M+TRL" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="SOIC127P1032X265-16N">
-<connects>
-<connect gate="G$1" pin="!INT!/SQW" pad="3"/>
-<connect gate="G$1" pin="!RST" pad="4"/>
-<connect gate="G$1" pin="32KHZ" pad="1"/>
-<connect gate="G$1" pin="GND" pad="13"/>
-<connect gate="G$1" pin="N.C._1" pad="5"/>
-<connect gate="G$1" pin="N.C._2" pad="6"/>
-<connect gate="G$1" pin="N.C._3" pad="7"/>
-<connect gate="G$1" pin="N.C._4" pad="8"/>
-<connect gate="G$1" pin="N.C._5" pad="9"/>
-<connect gate="G$1" pin="N.C._6" pad="10"/>
-<connect gate="G$1" pin="N.C._7" pad="11"/>
-<connect gate="G$1" pin="N.C._8" pad="12"/>
-<connect gate="G$1" pin="SCL" pad="16"/>
-<connect gate="G$1" pin="SDA" pad="15"/>
-<connect gate="G$1" pin="VBAT" pad="14"/>
-<connect gate="G$1" pin="VCC" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="DESCRIPTION" value="+/-5ppm, I2C Real-Time Clock" constant="no"/>
-<attribute name="HEIGHT" value="2.65mm" constant="no"/>
-<attribute name="MANUFACTURER_NAME" value="Maxim Integrated" constant="no"/>
-<attribute name="MANUFACTURER_PART_NUMBER" value="DS3231M+TRL" constant="no"/>
-<attribute name="MOUSER_PART_NUMBER" value="700-DS3231M+TRL" constant="no"/>
-<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Maxim-Integrated/DS3231M%2bTRL?qs=Bakm8ERcljq5PBzSwLfmgg%3D%3D" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -7292,6 +7235,37 @@ Source: &lt;a href="http://ww1.microchip.com/downloads/en/DeviceDoc/20001984g.pd
 <attribute name="MANUFACTURER_PART_NUMBER" value="MCP73831T-3ACI/OT" constant="no"/>
 <attribute name="MOUSER_PART_NUMBER" value="579-MCP73831T-3ACIOT" constant="no"/>
 <attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Microchip-Technology/MCP73831T-3ACI-OT?qs=yUQqVecv4quInAWkk8YFWg%3D%3D" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="RV-3028-C7_32.768KHZ_1PPM_TA_Q" prefix="IC">
+<description>&lt;b&gt;Real Time Clock 32.768kHz I2C Time Acc. 1ppm&lt;/b&gt;&lt;p&gt;
+Source: &lt;a href="https://www.mouser.de/datasheet/2/530/RV_3028_C7-1524919.pdf"&gt; Datasheet &lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="RV-3028-C7_32.768KHZ_1PPM_TA_Q" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="RV3028C732768KHZ1PPMTAQC">
+<connects>
+<connect gate="G$1" pin="CLKOUT" pad="1"/>
+<connect gate="G$1" pin="EVI" pad="8"/>
+<connect gate="G$1" pin="SCL" pad="3"/>
+<connect gate="G$1" pin="SDA" pad="4"/>
+<connect gate="G$1" pin="VBACKUP" pad="6"/>
+<connect gate="G$1" pin="VDD" pad="7"/>
+<connect gate="G$1" pin="VSS" pad="5"/>
+<connect gate="G$1" pin="~INT" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="Real Time Clock 32.768kHz I2C Time Acc. 1ppm" constant="no"/>
+<attribute name="HEIGHT" value="0.8mm" constant="no"/>
+<attribute name="MANUFACTURER_NAME" value="Micro Crystal AG" constant="no"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="RV-3028-C7 32.768kHz 1ppm TA QC" constant="no"/>
+<attribute name="MOUSER_PART_NUMBER" value="428-203591-MG01" constant="no"/>
+<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.co.uk/ProductDetail/Micro-Crystal/RV-3028-C7-32768kHz-1ppm-TA-QC?qs=u16ybLDytRaU7ZFJl2AxfQ%3D%3D" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -8602,8 +8576,6 @@ JST PH 2-pin thru-home side entry</description>
 <part name="RX" library="adafruit" deviceset="LED" device="CHIP-LED0805" value="Green"/>
 <part name="R2" library="adafruit" deviceset="R-US_" device="R0805" value="1K"/>
 <part name="R3" library="adafruit" deviceset="R-US_" device="R0805" value="1K"/>
-<part name="IC1" library="SamacSys_Parts" deviceset="DS3231M+TRL" device=""/>
-<part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 <part name="SUPPLY4" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
 <part name="U1" library="SamacSys_Parts" deviceset="BAT-HLD-012-SMT" device=""/>
 <part name="R4" library="adafruit" deviceset="R-US_" device="R0805" value="4.7K"/>
@@ -8629,6 +8601,9 @@ JST PH 2-pin thru-home side entry</description>
 <part name="C2" library="resistor" deviceset="C-US" device="C1206" value="4.7uF"/>
 <part name="C3" library="resistor" deviceset="C-US" device="C1206" value="1uF"/>
 <part name="SUPPLY29" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
+<part name="IC11" library="SamacSys_Parts" deviceset="RV-3028-C7_32.768KHZ_1PPM_TA_Q" device=""/>
+<part name="SUPPLY33" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="GND" device=""/>
+<part name="SUPPLY34" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="VCC" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8828,23 +8803,16 @@ JST PH 2-pin thru-home side entry</description>
 <instance part="R3" gate="G$1" x="193.04" y="96.52" smashed="yes">
 <attribute name="VALUE" x="194.31" y="93.218" size="1.778" layer="96"/>
 </instance>
-<instance part="IC1" gate="G$1" x="170.18" y="-15.24" smashed="yes">
-<attribute name="NAME" x="201.93" y="-7.62" size="1.778" layer="95" align="center-left"/>
-<attribute name="VALUE" x="176.53" y="-10.16" size="1.778" layer="96" align="center-left"/>
+<instance part="SUPPLY4" gate="GND" x="302.26" y="-5.08" smashed="yes" rot="R180">
+<attribute name="VALUE" x="299.085" y="-4.445" size="1.778" layer="96" rot="R180"/>
 </instance>
-<instance part="SUPPLY2" gate="G$1" x="167.64" y="-17.78" smashed="yes" rot="R90">
-<attribute name="VALUE" x="164.465" y="-19.685" size="1.778" layer="96" rot="R90"/>
+<instance part="U1" gate="BAT" x="304.8" y="-7.62" smashed="yes">
+<attribute name="NAME" x="316.23" y="7.62" size="1.778" layer="95" align="center-left"/>
+<attribute name="VALUE" x="306.07" y="-15.24" size="1.778" layer="96" align="center-left"/>
 </instance>
-<instance part="SUPPLY4" gate="GND" x="236.22" y="-22.86" smashed="yes" rot="R90">
-<attribute name="VALUE" x="239.395" y="-24.765" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="U1" gate="BAT" x="231.14" y="-22.86" smashed="yes" rot="R180">
-<attribute name="NAME" x="232.41" y="-30.48" size="1.778" layer="95" rot="R180" align="center-left"/>
-<attribute name="VALUE" x="232.41" y="-27.94" size="1.778" layer="96" rot="R180" align="center-left"/>
-</instance>
-<instance part="R4" gate="G$1" x="238.76" y="-5.08" smashed="yes" rot="R180"/>
-<instance part="R5" gate="G$1" x="238.76" y="-2.54" smashed="yes" rot="R180"/>
-<instance part="SUPPLY5" gate="G$1" x="243.84" y="-7.62" smashed="yes" rot="R180"/>
+<instance part="R4" gate="G$1" x="233.68" y="-15.24" smashed="yes" rot="R90"/>
+<instance part="R5" gate="G$1" x="238.76" y="-15.24" smashed="yes" rot="R90"/>
+<instance part="SUPPLY5" gate="G$1" x="233.68" y="-22.86" smashed="yes" rot="R180"/>
 <instance part="U$5" gate="G$1" x="208.28" y="30.48" smashed="yes" rot="R270">
 <attribute name="NAME" x="218.9549" y="37.855040625" size="1.271559375" layer="95" rot="R270"/>
 <attribute name="VALUE" x="195.5761" y="38.103940625" size="1.270659375" layer="96" rot="R270"/>
@@ -8908,6 +8876,16 @@ JST PH 2-pin thru-home side entry</description>
 <instance part="SUPPLY29" gate="G$1" x="185.42" y="96.52" smashed="yes" rot="R90">
 <attribute name="VALUE" x="182.245" y="94.615" size="1.778" layer="96" rot="R90"/>
 </instance>
+<instance part="IC11" gate="G$1" x="251.46" y="-5.08" smashed="yes">
+<attribute name="NAME" x="283.21" y="2.54" size="1.778" layer="95" align="center-left"/>
+<attribute name="VALUE" x="250.19" y="-17.78" size="1.778" layer="96" align="center-left"/>
+</instance>
+<instance part="SUPPLY33" gate="GND" x="294.64" y="-12.7" smashed="yes" rot="R90">
+<attribute name="VALUE" x="297.815" y="-14.605" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="SUPPLY34" gate="G$1" x="292.1" y="-7.62" smashed="yes" rot="R270">
+<attribute name="VALUE" x="295.275" y="-5.715" size="1.778" layer="96" rot="R270"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -8963,12 +8941,9 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="182.88" y1="83.82" x2="182.88" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="GND"/>
 <pinref part="SUPPLY4" gate="GND" pin="GND"/>
-<wire x1="233.68" y1="-22.86" x2="231.14" y2="-22.86" width="0.1524" layer="91"/>
+<wire x1="302.26" y1="-7.62" x2="304.8" y2="-7.62" width="0.1524" layer="91"/>
 <pinref part="U1" gate="BAT" pin="GND"/>
-<wire x1="231.14" y1="-22.86" x2="205.74" y2="-22.86" width="0.1524" layer="91"/>
-<junction x="231.14" y="-22.86"/>
 </segment>
 <segment>
 <pinref part="SUPPLY11" gate="GND" pin="GND"/>
@@ -9002,6 +8977,11 @@ JST PH 2-pin thru-home side entry</description>
 <pinref part="C2" gate="G$1" pin="2"/>
 <wire x1="284.48" y1="20.32" x2="279.4" y2="20.32" width="0.1524" layer="91"/>
 <junction x="279.4" y="20.32"/>
+</segment>
+<segment>
+<pinref part="IC11" gate="G$1" pin="VSS"/>
+<pinref part="SUPPLY33" gate="GND" pin="GND"/>
+<wire x1="287.02" y1="-12.7" x2="292.1" y2="-12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -9169,15 +9149,11 @@ JST PH 2-pin thru-home side entry</description>
 <pinref part="SUPPLY8" gate="G$1" pin="VCC"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="VCC"/>
-<pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
-</segment>
-<segment>
 <pinref part="R5" gate="G$1" pin="1"/>
 <pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="243.84" y1="-2.54" x2="243.84" y2="-5.08" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="-20.32" x2="233.68" y2="-20.32" width="0.1524" layer="91"/>
 <pinref part="SUPPLY5" gate="G$1" pin="VCC"/>
-<junction x="243.84" y="-5.08"/>
+<junction x="233.68" y="-20.32"/>
 </segment>
 <segment>
 <pinref part="SUPPLY10" gate="G$1" pin="VCC"/>
@@ -9224,6 +9200,11 @@ JST PH 2-pin thru-home side entry</description>
 <pinref part="R3" gate="G$1" pin="1"/>
 <pinref part="SUPPLY29" gate="G$1" pin="VCC"/>
 <junction x="187.96" y="96.52"/>
+</segment>
+<segment>
+<pinref part="IC11" gate="G$1" pin="VDD"/>
+<pinref part="SUPPLY34" gate="G$1" pin="VCC"/>
+<wire x1="287.02" y1="-7.62" x2="289.56" y2="-7.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$53" class="0">
@@ -9807,30 +9788,26 @@ JST PH 2-pin thru-home side entry</description>
 </net>
 <net name="N$31" class="0">
 <segment>
-<pinref part="IC1" gate="G$1" pin="SDA"/>
+<pinref part="IC11" gate="G$1" pin="SDA"/>
+<wire x1="243.84" y1="-5.08" x2="251.46" y2="-12.7" width="0.1524" layer="91"/>
 <pinref part="IC8" gate="G$1" pin="PB1"/>
-<wire x1="205.74" y1="-17.78" x2="228.6" y2="-5.08" width="0.1524" layer="91"/>
-<pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="228.6" y1="-5.08" x2="233.68" y2="-5.08" width="0.1524" layer="91"/>
-<junction x="228.6" y="-5.08"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="233.68" y1="-5.08" x2="243.84" y2="-5.08" width="0.1524" layer="91"/>
+<wire x1="233.68" y1="-10.16" x2="233.68" y2="-5.08" width="0.1524" layer="91"/>
+<junction x="233.68" y="-5.08"/>
 </segment>
 </net>
 <net name="N$32" class="0">
 <segment>
-<pinref part="IC1" gate="G$1" pin="SCL"/>
-<wire x1="205.74" y1="-15.24" x2="228.6" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="IC11" gate="G$1" pin="SCL"/>
 <pinref part="IC8" gate="G$1" pin="PB0"/>
-<wire x1="220.98" y1="-2.54" x2="228.6" y2="-2.54" width="0.1524" layer="91"/>
-<junction x="228.6" y="-2.54"/>
+<wire x1="228.6" y1="-2.54" x2="238.76" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="-2.54" x2="243.84" y2="-2.54" width="0.1524" layer="91"/>
+<wire x1="243.84" y1="-2.54" x2="251.46" y2="-10.16" width="0.1524" layer="91"/>
 <pinref part="R5" gate="G$1" pin="2"/>
-<wire x1="228.6" y1="-2.54" x2="233.68" y2="-2.54" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$33" class="0">
-<segment>
-<pinref part="IC1" gate="G$1" pin="VBAT"/>
-<pinref part="U1" gate="BAT" pin="VCC"/>
-<wire x1="205.74" y1="-20.32" x2="231.14" y2="-20.32" width="0.1524" layer="91"/>
+<wire x1="238.76" y1="-10.16" x2="238.76" y2="-2.54" width="0.1524" layer="91"/>
+<junction x="238.76" y="-2.54"/>
 </segment>
 </net>
 <net name="N$34" class="0">
@@ -9914,6 +9891,13 @@ JST PH 2-pin thru-home side entry</description>
 <wire x1="279.4" y1="10.16" x2="274.32" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$33" class="0">
+<segment>
+<pinref part="IC11" gate="G$1" pin="VBACKUP"/>
+<pinref part="U1" gate="BAT" pin="VCC"/>
+<wire x1="287.02" y1="-10.16" x2="304.8" y2="-10.16" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
@@ -9925,6 +9909,7 @@ JST PH 2-pin thru-home side entry</description>
 <approved hash="104,1,177.8,55.88,IC2,VCCIO,N$101,,,"/>
 <approved hash="202,1,182.88,55.88,IC2,!RESET,,,,"/>
 <approved hash="113,1,139.7,-12.9946,S1,,,,,"/>
+<approved hash="113,1,264.397,30.7061,CN1,,,,,"/>
 </errors>
 </schematic>
 </drawing>
