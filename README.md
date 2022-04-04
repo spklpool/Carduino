@@ -2,6 +2,11 @@
 
 This repository contains the source code for the Carduino library for Arduino IDE as well as design files for the electronics and the 3d printed enclosure for the Carduino device.  Each of these 3 components will be desctibed separately below.  More information about Carduino can be found at https://carduino.co
 
+Everything you need to build a Carduino is in this repository if you have the necessary equipment.  If you are so inclined, you scan shop around for all the parts and build one yourself using the information you find in here.  You can also order a kit with all the electronic parts from our store at
+https://www.tindie.com/stores/Sparkle/
+
+There, you can also order one fully assembled and tested, including the 3d printed enclosure and a USB cable for close to the same price it would cost you to buy all the individual parts and the shipping costs.  Also, buying from our store helps support the continuing development of the project.  We have other things in the works you might like if you're interested in Cardano and electronics.
+
 ## Arduino library
 The Arduino IDE can be downloaded here:
 https://www.arduino.cc/en/software
