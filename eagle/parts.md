@@ -4,7 +4,7 @@
 | USB to Serial    | 428-203591-MG01             |   1   |
 | Realtime Clock   | RV-3028-C7 32.768kHz 1ppm   |   1   |
 | Battery Holder   | BAT-HLD-012-SMT             |   1   |
-| Microprocessor   | ATTINY404-SSNR              |   1   |
+| Microprocessor   | ATTINY804-SSF               |   1   |
 | Shift Register   | SN74HCS596DR                |   4   |
 | Display LEDs     | IN-P32AT5UW                 |  30   |
 | Rx/Tx LEDs       | 150080VS75000               |   2   |
