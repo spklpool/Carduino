@@ -10,7 +10,8 @@ There, you can also order one fully assembled and tested, including the 3d print
 ## Arduino library
 The Arduino IDE can be downloaded here:
 https://www.arduino.cc/en/software
-The files that make up the library are under the src folder.
+The files that make up the library are under the src folder for reference if you want to look at the code.  To use it though, you'll want to install it as a library in the IDE.  Instructions for installing the library and everything else you need to program your Carduino can be found in this tutorial video:
+https://www.youtube.com/watch?v=BPkC6jxjeJc&t=7s
 
 ## PCB design files
 The PCB is designed using Eagle.  It meets the criteria for being edited using the free edition for personal use, which can be downloaded here:
