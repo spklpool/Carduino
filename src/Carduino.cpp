@@ -111,7 +111,7 @@ void Carduino::runClock(uint32_t speedMultiplier, bool middleEpochCounter) {
   }
   
   unsigned long beginingOfTimeSeconds = getSecondsAtBeginingOfTime();
-  unsigned long nowSeconds = getNowFromClock();
+  unsigned long nowSeconds = getNowFromClock() - (BEGINING_OF_TIME_UTC_OFFSET * 3600);
   unsigned long shelley_seconds = nowSeconds - beginingOfTimeSeconds;
   unsigned long seconds_in_epoch = 432000; //60*60*5*24
   unsigned long seconds_in_this_epoch = shelley_seconds % seconds_in_epoch;
@@ -644,7 +644,6 @@ void Carduino::setClock(const char* date, const char* time) {
   sscanf(time, "%hhu:%hhu:%hhu", &hh, &mm, &ss);
   setClockToYMDHMS(y-2000, m, d, hh, mm, ss);
 }
-
 
 // read current date and time from DS3231 clock
 // reference: https://datasheets.maximintegrated.com/en/ds/DS3231.pdf
